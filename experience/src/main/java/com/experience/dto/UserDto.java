@@ -72,7 +72,9 @@ public class UserDto {
 		user.setUserage(getUserage());
 		user.setUserenabled(getUserenabled());
 		user.setContactno(getContactno());
-		user.setPicture(getPicture());
+		if(getPicture()!=null && getPicture()!="") {
+			user.setPicture(getPicture());
+		}
 		if(getUserpwd()!=null && getUserpwd()!="") {
 			user.setUserpwd(getUserpwd());
 		}

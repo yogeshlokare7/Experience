@@ -1,12 +1,14 @@
 package com.experience.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.experience.dto.UserDto;
 import com.experience.entity.User;
+import com.experience.service.EmailService;
 import com.experience.service.UserService;
+import com.experience.util.StringUtils;
 
 
 @Controller
@@ -28,6 +32,9 @@ public class UserController {
 	
 	@Autowired 
 	private HttpServletRequest request;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@RequestMapping(value = "/user/add", method = RequestMethod.GET) 
 	public String userUser(Model model) {
@@ -94,16 +101,43 @@ public class UserController {
 		if(!isValidUser()){
 			return "redirect:/login";
 		}
+		setProfileImage(userDto);
+		@SuppressWarnings("static-access")
+		String password = new StringUtils().generateRandomPassword();
+		userDto.setUserpwd(password);
 		User user = new User();
-		userDto.getEntityFromDTO(user);
+		userDto.getEntityFromDTO(user); 
 		if(user.getId()!=null && user.getId()>0) {
 			userService.updateUser(user);
 		}else {
 			userService.saveUser(user);
+			String appUrl = request.getScheme() + "://" + request.getServerName()+":"+request.getServerPort();
+
+			SimpleMailMessage registrationEmail = new SimpleMailMessage();
+			registrationEmail.setTo(user.getUseremail());
+			registrationEmail.setSubject("Experience Online Service Team");
+			registrationEmail.setText("Hello "+user.getFirstname()+"\n\n\nUser account created with below details:\n\nUsername: "+user.getUseremail()+"\nPassword:"+user.getUserpwd()
+					+ "\n\n\nPlease login here:" +appUrl +"\n\n\nSincerely,\nThe Experience Team");
+			registrationEmail.setFrom("noreply@domain.com");
+			emailService.sendEmail(registrationEmail);
 		}
 		return "redirect:/user/view";
 	}
 	
+	private void setProfileImage(UserDto dto) {
+		MultipartFile file = dto.getImages();
+		if (!file.isEmpty() && file!=null) {
+			try {
+				byte[] bytes = file.getBytes();
+				String imageStr = Base64.encodeBase64String(bytes);
+				dto.setPicture(imageStr);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
 	private boolean isValidUser() {
 		Object username = request.getSession().getAttribute("loggedInUser");
 		if(username ==  null){
@@ -127,16 +161,7 @@ public class UserController {
 	@RequestMapping(value = "/profile", method = RequestMethod.POST) 
 	public String demoDemoPage(@ModelAttribute UserDto dto, Model model) throws Exception {
 		System.out.println("dto--------------\n"+dto.toString());
-		MultipartFile file = dto.getImages();
-		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
-				String imageStr = Base64.encodeBase64String(bytes);
-				dto.setPicture(imageStr);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
+		setProfileImage(dto);
 		User user = userService.getUser(dto.getId());
 		dto.getEntityFromDTO(user);
 		userService.updateUser(user);
