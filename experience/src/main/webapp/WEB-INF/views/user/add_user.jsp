@@ -48,6 +48,8 @@
 						</div>
 
 						<div class="panel-body">
+						 <c:forEach items="${roles}" var="role">
+						 </c:forEach>
 							<form action="${pageContext.request.contextPath}/user/save" method="POST" enctype="multipart/form-data">
 												<input type="hidden" name="id" value="${user.id}">
 													<div class="form-group">
@@ -97,36 +99,38 @@
 														<div class="row">
 															<div class="col-md-6">
 																<label>Email</label>
-																<input type="email" name="useremail" value="${user.useremail}" class="form-control" required>
+																<input type="email" name="useremail" value="${user.useremail}" readonly="readonly" class="form-control" required>
 															</div>
-															<c:if test="${empty user.userpwd}">
+															
 															<div class="col-md-6">
-																<label>Password</label>
-																<input type="password" name="userpwd" value="${user.userpwd}" class="form-control" required>
+																<label>Username</label>
+																<input type="text" name="username" value="${user.username}" class="form-control" required>
 															</div>
-															</c:if>
-															<!-- <div class="col-md-6">
-									                            <label>Your country</label>
-									                            <select class="select">
-									                                <option value="germany" selected="selected">Germany</option> 
-									                                <option value="france">France</option> 
-									                                <option value="spain">Spain</option> 
-									                                <option value="netherlands">Netherlands</option> 
-									                                <option value="other">...</option> 
-									                                <option value="uk">United Kingdom</option> 
-									                            </select>
-															</div> -->
 														</div>
-													</div>
-
-							                        <div class="form-group">
-							                        	<div class="row">
-							                        		<div class="col-md-6">
+														</div>
+								
+														<div class="form-group">
+															<div class="row">
+															<div class="col-md-6">
 																<label>Phone #</label>
 																<input type="text" name="contactno" value="${user.contactno}" class="form-control" required>
 																<span class="help-block">999-999-9999</span>
 							                        		</div>
-
+																<div class="col-md-6">
+																	<label>User Role</label> 
+																	<select class="select" name="userrole">
+																	<c:forEach items="${roles}" var="obj" varStatus="status">
+																	<option value="${obj.id}">
+																		<c:out value="${obj.role}" />
+																	</option>
+																	</c:forEach>
+																	</select>
+																</div>
+															</div>
+														</div>
+								
+														<div class="form-group">
+							                        	<div class="row">
 															<div class="col-md-6">
 																<label class="display-block">Upload profile image</label>
 							                                    <input type="file" name="images" class="file-styled" onchange="readURL(this);">

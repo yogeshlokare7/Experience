@@ -74,8 +74,8 @@
 												</a>
 
                                                <ul class="dropdown-menu dropdown-menu-right">
-                                               <li><a onclick="return confirmAction('Edit')" href="${contextPath}/permission/edit/${permission.id}">Edit</a></li>
-                                               <li><a onclick="return confirmAction('Delete')" href="${contextPath}/permission/delete/${permission.id}">Delete</a></li>
+                                               <li><a onclick="return confirmAction('Edit')" href="${contextPath}/permission/edit/${permission.id}"><i class="icon-pencil"></i>Edit</a></li>
+                                               <li><a onclick="return confirmAction('Delete')" href="${contextPath}/permission/delete/${permission.id}"><i class="icon-cross"></i>Delete</a></li>
                                                 </ul> 
                                             </li>
                                         </ul>

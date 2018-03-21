@@ -1,13 +1,10 @@
 package com.experience.entity;
-import java.util.HashSet;
-import java.util.Set;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,21 +15,24 @@ public class Role  implements java.io.Serializable {
 	private Integer id;
 	private String role;
 	private String description;
-	private Set<Assignrole> assignroles = new HashSet<Assignrole>(0);
-	private Set<Rolepermission> rolepermissions = new HashSet<Rolepermission>(0);
+	/*private Set<Assignrole> assignroles = new HashSet<Assignrole>(0);
+	private Set<Rolepermission> rolepermissions = new HashSet<Rolepermission>(0);*/
 
 	public Role() {
 	}
 
-	public Role(String role, Set<Assignrole> assignroles, Set<Rolepermission> rolepermissions) {
+	
+
+	public Role(Integer id, String role, String description) {
+		super();
+		this.id = id;
 		this.role = role;
-		this.assignroles = assignroles;
-		this.rolepermissions = rolepermissions;
+		this.description = description;
 	}
 
+
+
 	@Id @GeneratedValue(strategy=IDENTITY)
-
-
 	@Column(name="id", unique=true, nullable=false)
 	public Integer getId() {
 		return this.id;
@@ -62,24 +62,12 @@ public class Role  implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="role")
-	public Set<Assignrole> getAssignroles() {
-		return this.assignroles;
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", role=" + role + ", description=" + description + "]";
 	}
 
-	public void setAssignroles(Set<Assignrole> assignroles) {
-		this.assignroles = assignroles;
-	}
-
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="role")
-	public Set<Rolepermission> getRolepermissions() {
-		return this.rolepermissions;
-	}
-
-	public void setRolepermissions(Set<Rolepermission> rolepermissions) {
-		this.rolepermissions = rolepermissions;
-	}
-
+	
 }
 
 

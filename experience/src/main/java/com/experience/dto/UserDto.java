@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.experience.entity.Role;
 import com.experience.entity.User;
 
  
@@ -23,14 +24,20 @@ public class UserDto {
     private String contactno;
 	private String picture;
 	private MultipartFile images;
+    private Integer userrole;
+    private Short tempactive;
+    private String username;
 	private Set<AssignRoleDto> assignroles = new HashSet<AssignRoleDto>(0);
 
 	public UserDto() {
 	}
 
+
+
 	public UserDto(Integer id, String firstname, String lastname, String useremail, Integer userage, String userpwd,
 			Byte userenabled, String confirmationtoken, String resettoken, Date createdon, Date lastlogin,
-			String contactno, String picture, MultipartFile images, Set<AssignRoleDto> assignroles) {
+			String contactno, String picture, MultipartFile images, Integer userrole, Short tempactive, String username,
+			Set<AssignRoleDto> assignroles) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -45,8 +52,13 @@ public class UserDto {
 		this.contactno = contactno;
 		this.picture = picture;
 		this.images = images;
+		this.userrole = userrole;
+		this.tempactive = tempactive;
+		this.username = username;
 		this.assignroles = assignroles;
 	}
+
+
 
 	public UserDto(User user) {
 		setFirstname(user.getFirstname());
@@ -78,6 +90,7 @@ public class UserDto {
 		if(getUserpwd()!=null && getUserpwd()!="") {
 			user.setUserpwd(getUserpwd());
 		}
+		user.setUsername(getUsername());
 		return user;
 	}
 
@@ -210,6 +223,36 @@ public class UserDto {
 		this.images = images;
 	}
 
+	
+
+
+	public Integer getUserrole() {
+		return userrole;
+	}
+
+
+
+	public void setUserrole(Integer userrole) {
+		this.userrole = userrole;
+	}
+
+
+
+	public Short getTempactive() {
+		return tempactive;
+	}
+
+	public void setTempactive(Short tempactive) {
+		this.tempactive = tempactive;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	@Override
 	public String toString() {

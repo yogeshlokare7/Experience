@@ -105,8 +105,8 @@
 												</a>
 
                                                <ul class="dropdown-menu dropdown-menu-right">
-                                               <li><a onclick="return confirmAction('Edit')" href="${contextPath}/role/edit/${role.id}">Edit</a></li>
-                                               <li><a onclick="return confirmAction('Delete')" href="${contextPath}/role/delete/${role.id}">Delete</a></li>
+                                               <li><a onclick="return confirmAction('Edit')" href="${contextPath}/role/edit/${role.id}"><i class="icon-pencil"></i>Edit</a></li>
+                                               <li><a onclick="return confirmAction('Delete')" href="${contextPath}/role/delete/${role.id}"><i class="icon-cross"></i>Delete</a></li>
                                                 </ul> 
                                             </li>
                                         </ul>

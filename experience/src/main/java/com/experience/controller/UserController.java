@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.experience.dto.UserDto;
+import com.experience.entity.Role;
 import com.experience.entity.User;
 import com.experience.service.EmailService;
+import com.experience.service.RoleService;
 import com.experience.service.UserService;
 import com.experience.util.StringUtils;
 
@@ -36,11 +38,15 @@ public class UserController {
 	@Autowired
 	private EmailService emailService;
 	
+	@Autowired
+	private RoleService roleService;
+	
 	@RequestMapping(value = "/user/add", method = RequestMethod.GET) 
-	public String userUser(Model model) {
+	public String userUser(Model model) throws Exception {
 		if(!isValidUser()){
 			return "redirect:/login";
 		}
+		model.addAttribute("roles",roleService.getRoleList());
 		model.addAttribute("userDto",new UserDto());
 		return "user/add_user";    
 	}
@@ -70,6 +76,7 @@ public class UserController {
 		}
 		User user = userService.getUser(id);
 		model.addAttribute("user",user);
+		model.addAttribute("roles",roleService.getRoleList());
 		return "user/add_user";    
 	}
 
@@ -98,6 +105,7 @@ public class UserController {
 	//POST
 	@RequestMapping(value="/user/save", method = RequestMethod.POST)
 	public String saveUser(@ModelAttribute UserDto userDto) throws Exception {
+		System.out.println("@@@@@@@@@@@@@@@@@@@------------------"+userDto.getUserrole());
 		if(!isValidUser()){
 			return "redirect:/login";
 		}
@@ -105,8 +113,10 @@ public class UserController {
 		@SuppressWarnings("static-access")
 		String password = new StringUtils().generateRandomPassword();
 		userDto.setUserpwd(password);
-		User user = new User();
+		Role role = roleService.getRole(userDto.getUserrole());
+		User user = userService.getUser(userDto.getId());
 		userDto.getEntityFromDTO(user); 
+		user.setUserrole(role);
 		if(user.getId()!=null && user.getId()>0) {
 			userService.updateUser(user);
 		}else {

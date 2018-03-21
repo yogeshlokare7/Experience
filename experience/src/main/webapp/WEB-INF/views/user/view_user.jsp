@@ -50,7 +50,9 @@
                                     <th>Last Name</th>
                                     <th>Email </th>
                                     <th>Contact No</th>
+                                      <th>Role</th>
                                     <th>Status</th>
+                                  
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -61,6 +63,7 @@
                                     <td>${user.lastname}</td>
                                     <td><a href="#">${user.useremail}</a></td>
                                     <td>${user.contactno}</td>
+                                    <td>${user.userrole.role}</td>
                                     <td><span class="label label-success">Active</span></td>
                                     <td class="text-center">
                                         <ul class="icons-list">
@@ -71,8 +74,8 @@
 												</a>
 
                                                <ul class="dropdown-menu dropdown-menu-right">
-                                               <li><a onclick="return confirmAction('Edit')" href="${contextPath}/user/edit/${user.id}">Edit</a></li>
-                                               <li><a onclick="return confirmAction('Delete')" href="${contextPath}/user/delete/${user.id}">Delete</a></li>
+                                               <li><a onclick="return confirmAction('Edit')" href="${contextPath}/user/edit/${user.id}"><i class="icon-pencil"></i>Edit</a></li>
+                                               <li><a onclick="return confirmAction('Delete')" href="${contextPath}/user/delete/${user.id}"><i class="icon-cross"></i>Delete</a></li>
                                                 </ul> 
                                             </li>
                                         </ul>

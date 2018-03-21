@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,13 +36,16 @@ public class User  implements java.io.Serializable {
     private String contactno;
 	private String picture;
     private byte[] image;
-	private Set<Assignrole> assignroles = new HashSet<Assignrole>(0);
-	
+    private Role userrole;
+    private Short tempactive;
+    private String username;
+/*	private Set<Assignrole> assignroles = new HashSet<Assignrole>(0);
+	*/
 
 	public User() {
 	}
 
-	public User(String firstname, String lastname, String useremail, Integer userage, String userpwd, Byte userenabled, String confirmationtoken, String resettoken, Date createdon, Date lastlogin, Set<Assignrole> assignroles) {
+	public User(String firstname, String lastname, String useremail, Integer userage, String userpwd, Byte userenabled, String confirmationtoken, String resettoken, Date createdon, Date lastlogin) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.useremail = useremail;
@@ -51,7 +56,7 @@ public class User  implements java.io.Serializable {
 		this.resettoken = resettoken;
 		this.createdon = createdon;
 		this.lastlogin = lastlogin;
-		this.assignroles = assignroles;
+		/*this.assignroles = assignroles;*/
 	}
 
 	@Id @GeneratedValue(strategy=IDENTITY)
@@ -166,14 +171,6 @@ public class User  implements java.io.Serializable {
 		this.lastlogin = lastlogin;
 	}
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
-	public Set<Assignrole> getAssignroles() {
-		return this.assignroles;
-	}
-
-	public void setAssignroles(Set<Assignrole> assignroles) {
-		this.assignroles = assignroles;
-	}
 
 	@Column(name = "contactno")
 	public String getContactno() {
@@ -203,15 +200,45 @@ public class User  implements java.io.Serializable {
 		this.picture = picture;
 	}
 
+	@JoinColumn(name = "userrole", referencedColumnName = "id")
+	@ManyToOne
+	public Role getUserrole() {
+		return userrole;
+	}
+
+	public void setUserrole(Role userrole) {
+		this.userrole = userrole;
+	}
+
+	@Column(name="tempactive")
+	public Short getTempactive() {
+		return tempactive;
+	}
+	
+	public void setTempactive(Short tempactive) {
+		this.tempactive = tempactive;
+	}
+
+	@Column(name="username")
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", useremail=" + useremail
 				+ ", userage=" + userage + ", userpwd=" + userpwd + ", userenabled=" + userenabled
 				+ ", confirmationtoken=" + confirmationtoken + ", resettoken=" + resettoken + ", createdon=" + createdon
 				+ ", lastlogin=" + lastlogin + ", contactno=" + contactno + ", picture=" + picture + ", image="
-				+ Arrays.toString(image) + ", assignroles=" + assignroles + "]";
+				+ Arrays.toString(image) + ", userrole=" + userrole + ", tempactive=" + tempactive + ", username="
+				+ username + "]";
 	}
 
+	
 
 }
 
