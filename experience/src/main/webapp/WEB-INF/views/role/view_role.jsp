@@ -112,13 +112,10 @@
                                         </ul>
                                     </td>
                                 </tr>
-                               </c:forEach>
+                              </c:forEach>
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-danger btn-sm" id="sweet_combine">Launch <i class="icon-play3 position-right"></i></button>
                     </div>
-                    
-                    
                     <!-- /basic datatable -->
                    </div>
                    <!-- Small modal -->

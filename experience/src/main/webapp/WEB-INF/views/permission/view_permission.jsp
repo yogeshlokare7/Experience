@@ -92,6 +92,14 @@
 <!--  END Content Here-->
 	</tiles:putAttribute>
 </tiles:insertDefinition>
+<script type="text/javascript">
+function confirmAction(action) {
+	if(confirm("Do you want to "+action+" Record !!")){
+		return true;
+	}
+	return false;
+}
+</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/bootstrap.min.js"></script>
