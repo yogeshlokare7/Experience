@@ -78,16 +78,17 @@
 											</div>
 
 											<div class="panel-body">
-												<form action="${pageContext.request.contextPath}/demo" method="POST">
+												<form action="${pageContext.request.contextPath}/profile" method="POST" enctype="multipart/form-data">
+												<input type="hidden" name="id" value="${user.id}">
 													<div class="form-group">
 														<div class="row">
 															<div class="col-md-6">
 																<label>First Name</label>
-																<input type="text" name="firstname" value="Yogesh" class="form-control">
+																<input type="text" name="firstname" value="${user.firstname}" class="form-control">
 															</div>
 															<div class="col-md-6">
 																<label>Last name</label>
-																<input type="text" name="lastname" value="Kopyov" class="form-control">
+																<input type="text" name="lastname" value="${user.lastname}" class="form-control">
 															</div>
 														</div>
 													</div>
@@ -126,7 +127,7 @@
 														<div class="row">
 															<div class="col-md-6">
 																<label>Email</label>
-																<input type="text" name="useremail" value="eugene@kopyov.com" class="form-control">
+																<input type="text" readonly="readonly" name="useremail" value="${user.useremail}" class="form-control">
 															</div>
 															<!-- <div class="col-md-6">
 									                            <label>Your country</label>
@@ -146,7 +147,7 @@
 							                        	<div class="row">
 							                        		<div class="col-md-6">
 																<label>Phone #</label>
-																<input type="text" name="contactno" value="+99-99-9999-9999" class="form-control">
+																<input type="text" name="contactno" value="${user.contactno}" class="form-control">
 																<span class="help-block">+99-99-9999-9999</span>
 							                        		</div>
 
@@ -177,7 +178,9 @@
 							<!-- User thumbnail -->
 							<div class="thumbnail">
 								<div class="thumb thumb-rounded thumb-slide">
-									<img src="${pageContext.request.contextPath}/resources/assets/images/placeholder.jpg" alt="">
+								<c:if test="${not empty loggedInUser.picture}">
+									<img src="data:image/png;base64,${user.picture}" alt="">
+								</c:if>
 									<div class="caption">
 										<span>
 											<a href="#" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
@@ -187,12 +190,12 @@
 								</div>
 							
 						    	<div class="caption text-center">
-						    		<h6 class="text-semibold no-margin">Hanna Dorman <small class="display-block">UX/UI designer</small></h6>
-					    			<ul class="icons-list mt-15">
+						    		<h6 class="text-semibold no-margin">${user.firstname} ${user.lastname}<small class="display-block">${user.useremail}</small></h6>
+					    			<!-- <ul class="icons-list mt-15">
 				                    	<li><a href="#" data-popup="tooltip" title="Google Drive"><i class="icon-google-drive"></i></a></li>
 				                    	<li><a href="#" data-popup="tooltip" title="Twitter"><i class="icon-twitter"></i></a></li>
 				                    	<li><a href="#" data-popup="tooltip" title="Github"><i class="icon-github"></i></a></li>
-			                    	</ul>
+			                    	</ul> -->
 						    	</div>
 					    	</div>
 					    	<!-- /user thumbnail -->
@@ -221,10 +224,9 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/styling/uniform.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/selects/select2.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/styling/uniform.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/ui/moment/moment.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/ui/fullcalendar/fullcalendar.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/visualization/echarts/echarts.js"></script>
+
 	
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/core/app.js"></script>

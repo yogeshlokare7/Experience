@@ -3,13 +3,18 @@
  */
 package com.experience.controller;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.experience.dto.UserDto;
+import com.experience.entity.User;
 
 /**
  * @author Pravin Tumasre
@@ -35,14 +40,18 @@ public class DashboardController {
 		return "dashboard/view_report_1";    
 	}
 	
-	@RequestMapping(value = "/demo", method = RequestMethod.GET) 
-	public String viewDemoPage() {
-		return "dashboard/demo";    
-	}
+	/*@RequestMapping(value = "/demo", method = RequestMethod.POST) 
+	public String demoDemoPage(@RequestParam("file") MultipartFile file, Model model) {
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+				System.out.println("@@@@@@@@@@@@@@file@!@@@@@@@@\n"+file+"\n"+bytes);
+				return "redirect:/dashboard";  
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "demo";    
+	}*/
 	
-	@RequestMapping(value = "/demo", method = RequestMethod.POST) 
-	public String demoDemoPage(@ModelAttribute UserDto dto, Model model) {
-		System.out.println("dto--------------\n"+dto.toString());
-		return "redirect:/dashboard";    
-	}
 }

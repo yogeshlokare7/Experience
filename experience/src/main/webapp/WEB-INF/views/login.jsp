@@ -111,7 +111,7 @@
 
 					<!-- Footer -->
 					<div class="footer text-muted text-center">
-						&copy; 2018. <a href="#">Experience</a> by <a href="http://www.mjbtech.com" target="_blank">MJB Technology</a>
+						&copy; 2018. <a href="${pageContext.request.contextPath}/login">Experience</a> by <a href="http://www.mjbtech.com" target="_blank">MJB Technology</a>
 					</div>
 					<!-- /footer -->
 				</div>

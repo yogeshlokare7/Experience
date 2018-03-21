@@ -22,7 +22,11 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<a href="#" class="media-left"><img src="${pageContext.request.contextPath}/resources/assets/images/avataar.png" class="img-circle img-sm" alt=""></a>
+								<a href="${pageContext.request.contextPath}/profile/${loggedInUser.id}" class="media-left">
+								<c:if test="${not empty loggedInUser.picture}">
+								<img src="data:image/png;base64,${loggedInUser.picture}" class="img-circle img-sm" alt="">
+								</c:if>
+								</a>
 								<div class="media-body">
 									<span class="media-heading text-semibold">Hello ${loggedInUser.firstname}</span>
 									<div class="text-size-mini text-muted">

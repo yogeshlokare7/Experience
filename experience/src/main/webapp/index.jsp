@@ -10,7 +10,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+	<title>Experience America</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -83,10 +83,9 @@
 					</form>
 					<!-- /simple login form -->
 
-
 					<!-- Footer -->
 					<div class="footer text-muted text-center">
-						&copy; 2018. <a href="#">Experience</a> by <a href="http://www.mjbtech.com" target="_blank">MJB Technology</a>
+						&copy; 2018. <a href="${pageContext.request.contextPath}/login">Experience</a> by <a href="http://www.mjbtech.com" target="_blank">MJB Technology</a>
 					</div>
 					<!-- /footer -->
 				</div>

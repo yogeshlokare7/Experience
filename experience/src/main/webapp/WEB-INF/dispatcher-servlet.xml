@@ -20,6 +20,11 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="1000000" />
+	</beans:bean>
  
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -36,7 +41,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.experience.entity.Assignrole</beans:value>
-				<beans:value>com.experience.entity.Permission</beans:value>
+				<beans:value>com.experience.entity.UserPermission</beans:value>
 				<beans:value>com.experience.entity.Role</beans:value>
 				<beans:value>com.experience.entity.Rolepermission</beans:value>
 				<beans:value>com.experience.entity.User</beans:value>

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.experience.entity.Permission;
+import com.experience.entity.UserPermission;
 import com.experience.service.PermissionService;
 
 @Controller
@@ -35,7 +35,7 @@ public class PermissionController {
 		if(!isValidUser()) {
 			return "redirect:/login";
 		}
-		List<Permission> list = permissionService.getPermissionList();
+		List<UserPermission> list = permissionService.getPermissionList();
 		model.addAttribute("permissions",list);
 		return "permission/view_permission";    
 	}
@@ -45,7 +45,7 @@ public class PermissionController {
 		if(!isValidUser()) {
 			return "redirect:/login";
 		}
-		Permission permission =permissionService.getPermission(id);
+		UserPermission permission =permissionService.getPermission(id);
 		model.addAttribute("permission",permission);
 		return "permission/add_permission";    
 	}
@@ -60,7 +60,7 @@ public class PermissionController {
 	}
 	
 	@RequestMapping(value="/permission/save", method=RequestMethod.POST)
-	public String savePermissionDetail(@ModelAttribute("permission") Permission permission, BindingResult result) throws Exception {
+	public String savePermissionDetail(@ModelAttribute("permission") UserPermission permission, BindingResult result) throws Exception {
 		if(result.hasErrors()) {
 			return "permission/add_permission";   
 		}

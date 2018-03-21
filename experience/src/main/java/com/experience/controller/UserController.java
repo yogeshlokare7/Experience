@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.experience.dto.UserDto;
 import com.experience.entity.User;
@@ -76,12 +78,24 @@ public class UserController {
 		return "redirect:/user/view";   
 	}
 	
-	//POST
-	@RequestMapping(value="/user/save", method = RequestMethod.POST)
-	public String saveUser(@ModelAttribute("user") User user) throws Exception {
+	@RequestMapping(value = "/profile/{id}", method = RequestMethod.GET) 
+	public String viewDemoPage(@PathVariable("id") Integer id, Model model) throws Exception {
 		if(!isValidUser()){
 			return "redirect:/login";
 		}
+		User user = userService.getUser(id);
+		model.addAttribute("user",user);
+		return "dashboard/demo";    
+	}
+	
+	//POST
+	@RequestMapping(value="/user/save", method = RequestMethod.POST)
+	public String saveUser(@ModelAttribute UserDto userDto) throws Exception {
+		if(!isValidUser()){
+			return "redirect:/login";
+		}
+		User user = new User();
+		userDto.getEntityFromDTO(user);
 		if(user.getId()!=null && user.getId()>0) {
 			userService.updateUser(user);
 		}else {
@@ -109,6 +123,25 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}*/
+	
+	@RequestMapping(value = "/profile", method = RequestMethod.POST) 
+	public String demoDemoPage(@ModelAttribute UserDto dto, Model model) throws Exception {
+		System.out.println("dto--------------\n"+dto.toString());
+		MultipartFile file = dto.getImages();
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+				String imageStr = Base64.encodeBase64String(bytes);
+				dto.setPicture(imageStr);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		User user = userService.getUser(dto.getId());
+		dto.getEntityFromDTO(user);
+		userService.updateUser(user);
+		return "redirect:/dashboard";    
+	}
 	
 }
 	

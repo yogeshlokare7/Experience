@@ -65,23 +65,18 @@ public class UserDto {
 	}
 	
 	
-	public User getEntityFromDTO() {
-		User user= new User ();
-		user.setId(getId());
+	public User getEntityFromDTO(User user) {
 		user.setFirstname(getFirstname());
 		user.setLastname(getLastname());
 		user.setUseremail(getUseremail());
 		user.setUserage(getUserage());
-		user.setUserpwd(getUserpwd());
 		user.setUserenabled(getUserenabled());
-		user.setConfirmationtoken(getConfirmationtoken());
-		user.setResettoken(getResettoken());
-		user.setCreatedon(getCreatedon());
-		user.setLastlogin(getLastlogin());
 		user.setContactno(getContactno());
 		user.setPicture(getPicture());
+		if(getUserpwd()!=null && getUserpwd()!="") {
+			user.setUserpwd(getUserpwd());
+		}
 		return user;
-	
 	}
 
 	

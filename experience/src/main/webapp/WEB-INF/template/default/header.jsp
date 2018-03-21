@@ -40,16 +40,19 @@
 					</c:when>
 					<c:otherwise>
 						<a class="dropdown-toggle" data-toggle="dropdown">
-							<img src="${pageContext.request.contextPath}/resources/assets/images/avataar.png" alt="">
+							<%-- <img src="${pageContext.request.contextPath}/resources/assets/images/avataar.png" alt=""> --%>
+							<c:if test="${not empty loggedInUser.picture}">
+							<img src="data:image/png;base64,${loggedInUser.picture}" alt="">
+							</c:if>
 							<span>Hello ${loggedInUser.firstname}</span>
 							<i class="caret"></i>
 						</a>
 					</c:otherwise>
 					</c:choose>
 						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
-							<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
-							<li><a href="#"><span class="badge bg-blue pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+							<li><a href="${pageContext.request.contextPath}/profile/${loggedInUser.id}"><i class="icon-user-plus"></i> My profile</a></li>
+							<!-- <li><a href="#"><i class="icon-coins"></i> My balance</a></li> -->
+							<li><a href="${pageContext.request.contextPath}/update/${loggedInUser.id}"><i class="icon-lock2"></i> Update Password</a></li>
 							<li class="divider"></li>
 							<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
 							<li><a href="${pageContext.request.contextPath}/logout"><i class="icon-switch2"></i> Logout</a></li>

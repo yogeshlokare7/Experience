@@ -75,7 +75,7 @@
 					</div>
 					</div>
 					</c:if>
-					<form>
+					<form action="${contextPath}/reset/${id}" method="POST">
 						<div class="panel panel-body login-form">
 							<div class="text-center">
 								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>

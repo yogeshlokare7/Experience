@@ -99,7 +99,7 @@
 							</div>
 
 							<div class="form-group has-feedback">
-								<input type="email" class="form-control" name="userEmail" placeholder="Your email">
+								<input type="email" class="form-control" name="userEmail" placeholder="Your email" required>
 								<div class="form-control-feedback">
 									<i class="icon-mail5 text-muted"></i>
 								</div>
@@ -113,7 +113,7 @@
 
 					<!-- Footer -->
 					<div class="footer text-muted text-center">
-						&copy; 2018. <a href="#">Experience</a> by <a href="http://www.mjbtech.com" target="_blank">MJB Technology</a>
+						&copy; 2018. <a href="${pageContext.request.contextPath}/login">Experience</a> by <a href="http://www.mjbtech.com" target="_blank">MJB Technology</a>
 					</div>
 					<!-- /footer -->
 				</div>

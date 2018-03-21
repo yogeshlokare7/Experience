@@ -15,13 +15,13 @@ public class Rolepermission  implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Permission permission;
+	private UserPermission permission;
 	private Role role;
 
 	public Rolepermission() {
 	}
 
-	public Rolepermission(Permission permission, Role role) {
+	public Rolepermission(UserPermission permission, Role role) {
 		this.permission = permission;
 		this.role = role;
 	}
@@ -40,11 +40,11 @@ public class Rolepermission  implements java.io.Serializable {
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="permissionid")
-	public Permission getPermission() {
+	public UserPermission getPermission() {
 		return this.permission;
 	}
 
-	public void setPermission(Permission permission) {
+	public void setPermission(UserPermission permission) {
 		this.permission = permission;
 	}
 

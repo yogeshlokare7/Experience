@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,16 +51,23 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/forgot/reset", method = RequestMethod.GET)
-	public String displayResetPasswordPage(@RequestParam("token") String token) {
+	public String displayResetPasswordPage(@RequestParam("token") String token, Model model) {
 		try {
 			User user = userService.findUserByResetToken(token);
 			if (user!=null) { 
+				model.addAttribute("id", user.getId());
 				return "reset";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return "alert_out";
+	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET) 
+	public String updatePassword(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("id", id);
+		return "update_password";    
 	}
 	
 	@RequestMapping(value="/hello", method = RequestMethod.GET)
@@ -82,15 +90,41 @@ public class LoginController {
 			session.setAttribute("loggedInUser", user);
 			return "redirect:/dashboard";
 		}else {
+			try {
 			User user = userService.loginUser(username, password);
-			if(user == null) {
-				model.addAttribute("loginError", "Error logging in. Please try again");
-				return "login";
+				if(user == null) {
+					model.addAttribute("loginError", "Error logging in. Please try again");
+					return "login";
+				}
+				session.setAttribute("loggedInUser", user);
+				return "redirect:/dashboard";
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
-			session.setAttribute("loggedInUser", user);
-			return "redirect:/dashboard";
 		}
+		model.addAttribute("loginError", "Something is wrong. Please try again");
+		return "login";
 	}
+	
+	@RequestMapping(value="/reset/{id}",method=RequestMethod.POST)
+	public String setNewPassword(@PathVariable("id") Integer id, @RequestParam String password, Model model) throws Exception {
+		User user = userService.getUser(id);
+		user.setUserpwd(password);
+		user.setResettoken(null);
+		userService.updateUser(user);
+		return "redirect:/login";
+	}
+	
+	@RequestMapping(value="/update/{id}",method=RequestMethod.POST)
+	public String updatePassword(@PathVariable("id") Integer id, @RequestParam String password, Model model) throws Exception {
+		User user = userService.getUser(id);
+		user.setUserpwd(password);
+		userService.updateUser(user);
+		model.addAttribute("user",user);
+		model.addAttribute("found","Successfully updated!!!");
+		return "alert_in";
+	}
+
 	
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public String processForgotPasswordForm(@RequestParam("userEmail") String userEmail, Model model, HttpServletRequest request) throws Exception {
