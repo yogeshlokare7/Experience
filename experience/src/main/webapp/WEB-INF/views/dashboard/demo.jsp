@@ -84,11 +84,11 @@
 														<div class="row">
 															<div class="col-md-6">
 																<label>First Name</label>
-																<input type="text" name="firstname" value="${user.firstname}" class="form-control">
+																<input type="text" name="firstname" value="${user.firstname}" class="form-control" required>
 															</div>
 															<div class="col-md-6">
 																<label>Last name</label>
-																<input type="text" name="lastname" value="${user.lastname}" class="form-control">
+																<input type="text" name="lastname" value="${user.lastname}" class="form-control" required>
 															</div>
 														</div>
 													</div>
@@ -127,7 +127,7 @@
 														<div class="row">
 															<div class="col-md-6">
 																<label>Email</label>
-																<input type="text" readonly="readonly" name="useremail" value="${user.useremail}" class="form-control">
+																<input type="text" readonly="readonly" name="useremail" value="${user.useremail}" class="form-control" required>
 															</div>
 															<!-- <div class="col-md-6">
 									                            <label>Your country</label>
@@ -147,7 +147,7 @@
 							                        	<div class="row">
 							                        		<div class="col-md-6">
 																<label>Phone #</label>
-																<input type="text" name="contactno" value="${user.contactno}" class="form-control">
+																<input type="text" name="contactno" value="${user.contactno}" class="form-control" required>
 																<span class="help-block">+99-99-9999-9999</span>
 							                        		</div>
 

@@ -54,14 +54,14 @@
 									<div class="form-group">
 										<label class="control-label col-lg-2">Permission Name</label>
 										<div class="col-lg-10">
-											<input type="text" class="form-control" name="name" value="${permission.name}">
+											<input type="text" class="form-control" name="name" value="${permission.name}" required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-2">Description</label>
 										<div class="col-lg-10">
-											<input type="text" class="form-control" name="description" value="${permission.description}">
+											<input type="text" class="form-control" name="description" value="${permission.description}" required>
 										</div>
 									</div>
 

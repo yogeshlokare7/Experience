@@ -115,6 +115,7 @@
                                </c:forEach>
                             </tbody>
                         </table>
+                        <button type="button" class="btn btn-danger btn-sm" id="sweet_combine">Launch <i class="icon-play3 position-right"></i></button>
                     </div>
                     
                     
@@ -132,12 +133,12 @@
 
 								<div class="modal-body">
 									<h6 class="text-semibold">Role Name</h6>
-									<input type="text" class="form-control" name="role" value="${role.role}">
+									<input type="text" class="form-control" name="role" value="${role.role}" required="true">
 
 									<!-- <hr> -->
 
 									<h6 class="text-semibold">Description</h6>
-									<input type="text" class="form-control" name="description" value="${role.description}">
+									<input type="text" class="form-control" name="description" value="${role.description}" required="true" >
 								</div>
 
 								<div class="modal-footer">
@@ -155,11 +156,12 @@
 	</tiles:putAttribute>
 </tiles:insertDefinition>
 <script type="text/javascript">
-$(document).ready(function () {
-
-    $('#modal').modal('show');
-
-});
+function confirmAction(action) {
+	if(confirm("Do you want to "+action+" Record !!")){
+		return true;
+	}
+	return false;
+}
 </script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
@@ -174,14 +176,17 @@ $(document).ready(function () {
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/notifications/bootbox.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/notifications/sweet_alert.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/selects/select2.min.js"></script>
+
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/core/app.js"></script>
+	
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/pages/components_modals.js"></script> 
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/selects/select2.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/tables/datatables/datatables.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/pages/datatables_basic.js"></script>
+	

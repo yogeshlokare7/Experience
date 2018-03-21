@@ -9,7 +9,7 @@
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 <!-- Enter Content Here -->
-hiii
+
 
 <!--  END Content Here-->
 	</tiles:putAttribute>
