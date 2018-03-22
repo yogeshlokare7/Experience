@@ -94,7 +94,8 @@
 					<form method="POST" action="${pageContext.request.contextPath}/forgot">
 						<div class="panel panel-body login-form">
 							<div class="text-center">
-								<div class="icon-object border-warning text-warning"><i class="icon-spinner11"></i></div>
+								<img src="${pageContext.request.contextPath}/resources/assets/images/logo.png" alt=""><br/>
+								<br/>
 								<h5 class="content-group">Password recovery <small class="display-block">We'll send you instructions in email</small></h5>
 							</div>
 
@@ -104,8 +105,12 @@
 									<i class="icon-mail5 text-muted"></i>
 								</div>
 							</div>
-
-							<button type="submit" class="btn bg-blue btn-block">Reset password<i class="icon-arrow-right14 position-right"></i></button>
+								<div class="form-group">
+							<button type="submit" class="btn bg-blue btn-block" style="background-color:#FB8C00;border:#FB8C00;">Reset password<i class="icon-arrow-right14 position-right"></i></button>
+							</div>
+							<div class="text-center">
+								<a href="${contextPath}/login">Login here</a>
+							</div>
 						</div>
 					</form>
 					<!-- /simple login form -->

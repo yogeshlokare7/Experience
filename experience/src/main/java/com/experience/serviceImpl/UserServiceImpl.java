@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
 	public User loginUser(String username, String password) {
 		 User user = null;
 		try {
-			user = this.findUserByUseremail(username);
+			user = this.findUserByUsername(username);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -54,6 +54,11 @@ public class UserServiceImpl implements UserService{
 	public User findUserByResetToken(String token) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.findUserByResetToken(token);
+	}
+
+	public User findUserByUsername(String username) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.findUserByUsername(username);
 	}
 
 }

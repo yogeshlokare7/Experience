@@ -78,7 +78,9 @@
 					<form action="${contextPath}/login" method="POST">
 						<div class="panel panel-body login-form">
 							<div class="text-center">
-								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+								<!-- <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div> -->
+								<img src="${pageContext.request.contextPath}/resources/assets/images/logo.png" alt=""><br/>
+								<br/>
 								<h5 class="content-group">Login to your account <small class="display-block">Enter your credentials below</small></h5>
 							</div>
 
@@ -97,7 +99,7 @@
 							</div>
 
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
+								<button type="submit" class="btn btn-primary btn-block" style="background-color:#FB8C00;border:#FB8C00;">Sign in <i class="icon-circle-right2 position-right"></i></button>
 							</div>
 
 							<div class="text-center">

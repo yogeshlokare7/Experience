@@ -78,7 +78,8 @@
 					<form action="${contextPath}/reset/${id}" method="POST">
 						<div class="panel panel-body login-form">
 							<div class="text-center">
-								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+								<img src="${pageContext.request.contextPath}/resources/assets/images/logo.png" alt=""><br/>
+								<br/>
 								<h5 class="content-group">Set New Password<small class="display-block">Enter your password below</small></h5>
 							</div>
 
@@ -97,7 +98,7 @@
 							</div>
 
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-block">Set Password <i class="icon-circle-right2 position-right"></i></button>
+								<button type="submit" class="btn btn-primary btn-block" style="background-color:#FB8C00;border:#FB8C00;">Set Password <i class="icon-circle-right2 position-right"></i></button>
 							</div>
 
 							

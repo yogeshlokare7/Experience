@@ -19,6 +19,8 @@ public interface UserDao {
 	public void deleteUser(User user) throws Exception;
 	
 	public User findUserByUseremail(String useremail) throws Exception;
+	
+	public User findUserByUsername(String username) throws Exception;
 
 	public User findUserByResetToken(String token) throws Exception;
 }
