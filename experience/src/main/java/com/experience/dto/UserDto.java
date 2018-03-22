@@ -1,11 +1,8 @@
 package com.experience.dto;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.experience.entity.Role;
 import com.experience.entity.User;
 
  
@@ -27,17 +24,20 @@ public class UserDto {
     private Integer userrole;
     private Short tempactive;
     private String username;
-	private Set<AssignRoleDto> assignroles = new HashSet<AssignRoleDto>(0);
+    private String streetno;
+    private String streetname;
+    private String city;
+    private String postalcode;
+    private String province;
+    private String country;
 
 	public UserDto() {
 	}
-
-
-
+	
 	public UserDto(Integer id, String firstname, String lastname, String useremail, Integer userage, String userpwd,
 			Byte userenabled, String confirmationtoken, String resettoken, Date createdon, Date lastlogin,
 			String contactno, String picture, MultipartFile images, Integer userrole, Short tempactive, String username,
-			Set<AssignRoleDto> assignroles) {
+			String streetno, String streetname, String city, String postalcode, String province, String country) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -55,9 +55,13 @@ public class UserDto {
 		this.userrole = userrole;
 		this.tempactive = tempactive;
 		this.username = username;
-		this.assignroles = assignroles;
+		this.streetno = streetno;
+		this.streetname = streetname;
+		this.city = city;
+		this.postalcode = postalcode;
+		this.province = province;
+		this.country = country;
 	}
-
 
 
 	public UserDto(User user) {
@@ -91,6 +95,12 @@ public class UserDto {
 			user.setUserpwd(getUserpwd());
 		}
 		user.setUsername(getUsername());
+		user.setStreetno(getStreetno());
+		user.setStreetname(getStreetname());
+		user.setCity(getCity());
+		user.setPostalcode(getPostalcode());
+		user.setCountry(getCountry());
+		user.setProvince(getProvince());
 		return user;
 	}
 
@@ -191,14 +201,6 @@ public class UserDto {
 		this.lastlogin = lastlogin;
 	}
 
-	public Set<AssignRoleDto> getAssignroles() {
-		return this.assignroles;
-	}
-
-	public void setAssignroles(Set<AssignRoleDto> assignroles) {
-		this.assignroles = assignroles;
-	}
-
 	public String getContactno() {
 		return contactno;
 	}
@@ -254,13 +256,63 @@ public class UserDto {
 		this.username = username;
 	}
 
+	public String getStreetno() {
+		return streetno;
+	}
+
+	public void setStreetno(String streetno) {
+		this.streetno = streetno;
+	}
+
+	public String getStreetname() {
+		return streetname;
+	}
+
+	public void setStreetname(String streetname) {
+		this.streetname = streetname;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getPostalcode() {
+		return postalcode;
+	}
+
+	public void setPostalcode(String postalcode) {
+		this.postalcode = postalcode;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDto [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", useremail=" + useremail
 				+ ", userage=" + userage + ", userpwd=" + userpwd + ", userenabled=" + userenabled
 				+ ", confirmationtoken=" + confirmationtoken + ", resettoken=" + resettoken + ", createdon=" + createdon
 				+ ", lastlogin=" + lastlogin + ", contactno=" + contactno + ", picture=" + picture + ", images="
-				+ images + ", assignroles=" + assignroles + "]";
+				+ images + ", userrole=" + userrole + ", tempactive=" + tempactive + ", username=" + username
+				+ ", streetno=" + streetno + ", streetname=" + streetname + ", city=" + city + ", postalcode="
+				+ postalcode + ", province=" + province + ", country=" + country + "]";
 	}
 
 }

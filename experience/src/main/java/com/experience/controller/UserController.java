@@ -105,18 +105,20 @@ public class UserController {
 	//POST
 	@RequestMapping(value="/user/save", method = RequestMethod.POST)
 	public String saveUser(@ModelAttribute UserDto userDto) throws Exception {
-		System.out.println("@@@@@@@@@@@@@@@@@@@------------------"+userDto.getUserrole());
 		if(!isValidUser()){
 			return "redirect:/login";
 		}
 		setProfileImage(userDto);
 		Role role = roleService.getRole(userDto.getUserrole());
-		User user = userService.getUser(userDto.getId());
-		userDto.getEntityFromDTO(user); 
-		user.setUserrole(role);
-		if(user.getId()!=null && user.getId()>0) {
+		if(userDto.getId()!=null && userDto.getId()>0) {
+			User user = userService.getUser(userDto.getId());
+			userDto.getEntityFromDTO(user); 
+			user.setUserrole(role);
 			userService.updateUser(user);
 		}else {
+			User user = new User();
+			userDto.getEntityFromDTO(user); 
+			user.setUserrole(role);
 			@SuppressWarnings("static-access")
 			String password = new StringUtils().generateRandomPassword();
 			user.setUserpwd(password);

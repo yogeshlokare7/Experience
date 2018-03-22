@@ -35,33 +35,51 @@ public class User  implements java.io.Serializable {
 	private Date lastlogin;
     private String contactno;
 	private String picture;
-    private byte[] image;
     private Role userrole;
     private Short tempactive;
     private String username;
-/*	private Set<Assignrole> assignroles = new HashSet<Assignrole>(0);
-	*/
+    private String streetno;
+    private String streetname;
+    private String city;
+    private String postalcode;
+    private String province;
+    private String country;
 
 	public User() {
+	
 	}
 
-	public User(String firstname, String lastname, String useremail, Integer userage, String userpwd, Byte userenabled, String confirmationtoken, String resettoken, Date createdon, Date lastlogin) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.useremail = useremail;
-		this.userage = userage;
-		this.userpwd = userpwd;
-		this.userenabled = userenabled;
-		this.confirmationtoken = confirmationtoken;
-		this.resettoken = resettoken;
-		this.createdon = createdon;
-		this.lastlogin = lastlogin;
-		/*this.assignroles = assignroles;*/
+	public User(Integer id, String firstname, String lastname, String useremail, Integer userage, String userpwd,
+		Byte userenabled, String confirmationtoken, String resettoken, Date createdon, Date lastlogin, String contactno,
+		String picture, Role userrole, Short tempactive, String username, String streetno,
+		String streetname, String city, String postalcode, String province, String country) {
+	this.id = id;
+	this.firstname = firstname;
+	this.lastname = lastname;
+	this.useremail = useremail;
+	this.userage = userage;
+	this.userpwd = userpwd;
+	this.userenabled = userenabled;
+	this.confirmationtoken = confirmationtoken;
+	this.resettoken = resettoken;
+	this.createdon = createdon;
+	this.lastlogin = lastlogin;
+	this.contactno = contactno;
+	this.picture = picture;
+	this.userrole = userrole;
+	this.tempactive = tempactive;
+	this.username = username;
+	this.streetno = streetno;
+	this.streetname = streetname;
+	this.city = city;
+	this.postalcode = postalcode;
+	this.province = province;
+	this.country = country;
 	}
+
+
 
 	@Id @GeneratedValue(strategy=IDENTITY)
-
-
 	@Column(name="id", unique=true, nullable=false)
 	public Integer getId() {
 		return this.id;
@@ -181,16 +199,6 @@ public class User  implements java.io.Serializable {
 		this.contactno = contactno;
 	}
 
-	@Lob
-	@Column(name = "image")
-	public byte[] getImage() {
-		return image;
-	}
-
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
-
     @Column(name="picture")
 	public String getPicture() {
 		return picture;
@@ -227,19 +235,70 @@ public class User  implements java.io.Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	@Column(name="streetno")
+	public String getStreetno() {
+		return streetno;
+	}
+
+	public void setStreetno(String streetno) {
+		this.streetno = streetno;
+	}
+
+	@Column(name="streetname")
+	public String getStreetname() {
+		return streetname;
+	}
+
+	public void setStreetname(String streetname) {
+		this.streetname = streetname;
+	}
+
+	@Column(name="city")
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@Column(name="postalcode")
+	public String getPostalcode() {
+		return postalcode;
+	}
+
+	public void setPostalcode(String postalcode) {
+		this.postalcode = postalcode;
+	}
+
+	@Column(name="province")
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	@Column(name="country")
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", useremail=" + useremail
 				+ ", userage=" + userage + ", userpwd=" + userpwd + ", userenabled=" + userenabled
 				+ ", confirmationtoken=" + confirmationtoken + ", resettoken=" + resettoken + ", createdon=" + createdon
-				+ ", lastlogin=" + lastlogin + ", contactno=" + contactno + ", picture=" + picture + ", image="
-				+ Arrays.toString(image) + ", userrole=" + userrole + ", tempactive=" + tempactive + ", username="
-				+ username + "]";
+				+ ", lastlogin=" + lastlogin + ", contactno=" + contactno + ", picture=" + picture + ", userrole=" + userrole + ", tempactive=" + tempactive + ", username="
+				+ username + ", streetno=" + streetno + ", streetname=" + streetname + ", city=" + city
+				+ ", postalcode=" + postalcode + ", province=" + province + ", country=" + country + "]";
 	}
-
-	
-
 }
 
 
