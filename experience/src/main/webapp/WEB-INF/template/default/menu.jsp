@@ -15,7 +15,7 @@
 							<c:when test="${empty loggedInUser.useremail}">
 								<a href="#" class="media-left"><img src="${pageContext.request.contextPath}/resources/assets/images/avataar.png" class="img-circle img-sm" alt=""></a>
 								<div class="media-body">
-									<span class="media-heading text-semibold">MJB Admin</span>
+									<span class="media-heading text-semibold">Welcome MJB Admin</span>
 									<div class="text-size-mini text-muted">
 										<i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
 									</div>
@@ -28,20 +28,19 @@
 								</c:if>
 								</a>
 								<div class="media-body">
-									<span class="media-heading text-semibold">Hello ${loggedInUser.firstname}</span>
-									<div class="text-size-mini text-muted">
-										<i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
+									<span class="media-heading text-semibold">Welcome ${loggedInUser.firstname}</span>
+									<div class="text-size-mini text-muted">${loggedInUser.useremail}<br/>
 									</div>
 								</div>
 							</c:otherwise>
 							</c:choose>
-							<div class="media-right media-middle">
+							<!-- <div class="media-right media-middle">
 									<ul class="icons-list">
 										<li>
-											<a href="#"><i class="icon-cog3"></i></a>
+											<a class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i></a>
 										</li>
 									</ul>
-								</div>
+							</div> -->
 							</div>
 						</div>
 					</div>
@@ -54,7 +53,7 @@
 							<ul class="navigation navigation-main navigation-accordion">
 
 								<!-- Main -->
-								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+								<li class="navigation-header"><span>Navigation</span> <i class="icon-menu" title="Main pages"></i></li>
 								<li><a href="${pageContext.request.contextPath}/dashboard"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
 								<li>
 									<a href="#"><i class="icon-stack2"></i> <span>User Management</span></a>

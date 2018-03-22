@@ -16,21 +16,21 @@ $(function() {
     // ------------------------------
 
     // Set paths
-    require.config({
+   /* require.config({
         paths: {
             echarts: 'assets/js/plugins/visualization/echarts'
         }
-    });
+    });*/
 
 
     // Configuration
     require(
-        [
+      /*  [
             'echarts',
             'echarts/theme/limitless',
             'echarts/chart/line',   // load-on-demand, don't forget the Magic switch type.
             'echarts/chart/bar'
-        ],
+        ],*/
 
 
         // Charts setup
@@ -433,7 +433,7 @@ $(function() {
 
 
     // Initialize calendar with options
-    $('.schedule').fullCalendar({
+    /*$('.schedule').fullCalendar({
         header: {
             left: 'prev,next today',
             center: 'title',
@@ -442,7 +442,7 @@ $(function() {
         defaultDate: '2014-11-12',
         editable: true,
         events: eventsColors
-    });
+    });*/
 
 
     // Render in hidden elements

@@ -44,7 +44,7 @@
 							<c:if test="${not empty loggedInUser.picture}">
 							<img src="data:image/png;base64,${loggedInUser.picture}" alt="">
 							</c:if>
-							<span>Hello ${loggedInUser.firstname}</span>
+							<span>Welcome ${loggedInUser.firstname}</span>
 							<i class="caret"></i>
 						</a>
 					</c:otherwise>

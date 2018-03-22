@@ -6,6 +6,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <title>Experience - User Registration</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/countries.js"></script>
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
@@ -133,7 +134,7 @@
 																			value="${user.contactno}" class="form-control" required>
 																	</div>
 																	<div class="col-md-6">
-																		<label>User Role</label> <a>Add New</a>
+																		<label>User Role</label><a onclick="openDialog()" style="border-bottom: 1px solid; font-weight: bold;margin-left:20px; font:bold;"> Add New Role</a>
 																		<c:choose>
 																			<c:when test="${empty user.id }">
 																			<select id="roleId" class="select" name="userrole" required="required">
@@ -157,7 +158,6 @@
 																		</select>
 																			</c:otherwise>
 																		</c:choose>
-																		
 																	</div>
 																</div>
 															</div>
@@ -210,24 +210,48 @@ function readURL(input) {
     }
 }
 
-var $country = '<c:out value="${user.country}"/>';
-$('#country').val($country);
+
+//Prompt
 </script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/jquery.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/blockui.min.js"></script>
+<script type="text/javascript">
+function openDialog(){
+    swal({
+        title: "Add Role",
+        type: "input",
+        showCancelButton: true,
+        confirmButtonColor: "#2196F3",
+        closeOnConfirm: false,
+        animation: "slide-from-right",
+        inputPlaceholder: "Enter role name here"
+    },
+    function(inputValue){
+        if (inputValue === false) return false;
+        if (inputValue === "") {
+            swal.showInputError("You need to write something!");
+            return false
+        }
+        var x = document.getElementById("roleId");
+        var option = document.createElement("option");
+        option.text = inputValue;
+        x.add(option);
+        swal({
+            title: "Nice!",
+            text: "You added role: " + inputValue,
+            type: "success",
+            confirmButtonColor: "#2196F3"
+        }); 
+    });
+}
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/blockui.min.js"></script>
 	
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/styling/uniform.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/selects/select2.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/ui/moment/moment.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/visualization/echarts/echarts.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/styling/uniform.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/selects/select2.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/ui/moment/moment.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/visualization/echarts/echarts.js"></script>
 	
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/core/app.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/notifications/sweet_alert.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/app.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/pages/user_pages_profile.js"></script>
