@@ -20,8 +20,7 @@
 					</h4>
 
 					<ul class="breadcrumb position-right">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="user_pages_profile.html">User pages</a></li>
+						<li><a href="home.html">Home</a></li>
 						<li class="active">Profile</li>
 					</ul>
 				</div>

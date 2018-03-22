@@ -15,7 +15,7 @@
 				<div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">User</span> - Form</h4>
+							<h4><span class="text-semibold">User</span> - Form</h4>
 						</div>
 					</div>
 
@@ -23,7 +23,7 @@
 						<ul class="breadcrumb">
 							<li><a href="${contextPath}/dashboard"><i class="icon-home2 position-left"></i> Home</a></li>
 							<li><a href="${contextPath}/user/view">Users</a></li>
-							<li class="active">User Registration</li>
+							<li class="active">Users Registration</li>
 						</ul>
 
 						

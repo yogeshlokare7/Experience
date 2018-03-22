@@ -13,19 +13,34 @@
                 <div class="page-header">
                     <div class="page-header-content">
                         <div class="page-title">
-                            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Users</span> - List</h4>
+                            <h4><span class="text-semibold">Users</span> - List</h4>
                         </div>
 
                         
                     </div>
+                    
+                    <div class="breadcrumb-line breadcrumb-line-component">
+						<ul class="breadcrumb">
+							<li><a href="${contextPath}/dashboard"><i class="icon-home2 position-left"></i> Home</a></li>
+							<li><a href="${contextPath}/user/view">Users</a></li>
+							
+						</ul>
+
+						
+					</div>
                 </div>
                 <!-- /page header -->
                 <!-- Content area -->
+                
+                
                 
                 <div class="content">
 					<a href="${pageContext.request.contextPath}/user/add" class="btn btn-primary">CREATE USER</a>
 					<br/>
 					<br/>
+					
+					
+					
                     <!-- Basic datatable -->
                     <div class="panel panel-flat">
                         <div class="panel-heading">

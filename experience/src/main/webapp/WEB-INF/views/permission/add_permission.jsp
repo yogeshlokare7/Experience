@@ -14,7 +14,7 @@
 				<div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Permission</span> - Form</h4>
+							<h4> <span class="text-semibold">Permission</span> - Form</h4>
 						</div>
 					</div>
 
@@ -22,7 +22,7 @@
 						<ul class="breadcrumb">
 							<li><a href="${contextPath}/dashboard"><i class="icon-home2 position-left"></i> Home</a></li>
 							<li><a href="${contextPath}/permission/view">Permissions</a></li>
-							<li class="active">Input form</li>
+							<li class="active">Save Permissions</li>
 						</ul>
 
 						

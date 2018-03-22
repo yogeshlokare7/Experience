@@ -13,20 +13,36 @@
                 <div class="page-header">
                     <div class="page-header-content">
                         <div class="page-title">
-                            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Roles</span> - List</h4>
+                            <h4><span class="text-semibold">Roles</span> - List</h4>
                         </div>
 
                         
                     </div>
-                </div>
+                
+                
+                 <div class="breadcrumb-line breadcrumb-line-component">
+						<ul class="breadcrumb">
+							<li><a href="${contextPath}/dashboard"><i class="icon-home2 position-left"></i> Home</a></li>
+							<li><a href="${contextPath}/role/view">Roles</a></li>
+							
+						</ul>
+
+					</div>
+					</div>
+                
                 <!-- /page header -->
                 <!-- Content area -->
+                
+               
                 
                 <div class="content">
 					<%-- <a href="${pageContext.request.contextPath}/role/add" class="btn btn-primary">ADD ROLE</a> --%>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_small">ADD ROLE</button>
 					<br/>
 					<br/>
+					
+					
+					
                     <!-- Basic datatable -->
                     <div class="panel panel-flat">
                         <div class="panel-heading">

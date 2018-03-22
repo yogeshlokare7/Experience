@@ -13,18 +13,20 @@
                 <div class="page-header">
                     <div class="page-header-content">
                         <div class="page-title">
-                            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Permission</span> - View</h4>
+                            <h4> <span class="text-semibold">Permission</span> - View</h4>
                         </div>
+				</div>
 
-                        
-                    </div>
+                    <div class="breadcrumb-line breadcrumb-line-component">
+						<ul class="breadcrumb">
+							<li><a href="${contextPath}/dashboard"><i class="icon-home2 position-left"></i> Home</a></li>
+							<li><a href="${contextPath}/permission/view">Permissions</a></li>
+							
+						</ul>
 
-                    <%-- <div class="breadcrumb-line breadcrumb-line-component">
-                        <ul class="breadcrumb">
-                            <li><a href="${pageContext.request.contextPath}/dashboard"><i class="icon-home2 position-left"></i> Home</a></li>
-                            <li class="active">Permission</li>
-                        </ul>
-                    </div> --%>
+						
+					</div>
+					
                 </div>
                 <!-- /page header -->
                 <!-- Content area -->
@@ -32,6 +34,9 @@
 					 <a href="${pageContext.request.contextPath}/permission/add" class="btn btn-primary">ADD PERMISSION</a>
 					 <br/>
 					 <br/>  
+					 
+					 
+					
                     <!-- Basic datatable -->
                     <div class="panel panel-flat">
                         <div class="panel-heading">
