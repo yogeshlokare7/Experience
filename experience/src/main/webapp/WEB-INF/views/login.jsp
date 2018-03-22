@@ -83,7 +83,7 @@
 							</div>
 
 							<div class="form-group has-feedback has-feedback-left">
-								<input type="email" class="form-control" name="username" placeholder="Username" required>
+								<input type="text" class="form-control" name="username" placeholder="Username" required>
 								<div class="form-control-feedback">
 									<i class="icon-user text-muted"></i>
 								</div>

@@ -99,23 +99,21 @@
 														<div class="row">
 															<div class="col-md-6">
 																<label>Email</label>
-																<input type="email" name="useremail" value="${user.useremail}" readonly="readonly" class="form-control" required>
+																<input type="email" name="useremail" value="${user.useremail}" class="form-control" required>
 															</div>
-															
-															<div class="col-md-6">
-																<label>Username</label>
-																<input type="text" name="username" value="${user.username}" class="form-control" required>
-															</div>
-														</div>
-														</div>
-								
-														<div class="form-group">
-															<div class="row">
 															<div class="col-md-6">
 																<label>Phone #</label>
 																<input type="text" name="contactno" value="${user.contactno}" class="form-control" required>
-																<span class="help-block">999-999-9999</span>
 							                        		</div>
+														</div>
+														</div>
+														
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-6">
+																	<label>Username</label>
+																	<input type="text" name="username" value="${user.username}" class="form-control" required>
+																</div>
 																<div class="col-md-6">
 																	<label>User Role</label> 
 																	<select class="select" name="userrole">

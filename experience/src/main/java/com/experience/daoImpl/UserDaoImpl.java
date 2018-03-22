@@ -41,8 +41,8 @@ public class UserDaoImpl extends EntityTransactionImpl<User> implements UserDao{
 	public User findUserByUseremail(String useremail) {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		Query createQuery = session.createQuery("FROM User u Where u.useremail =:useremail ");
-		createQuery.setParameter("useremail", useremail);
+		Query createQuery = session.createQuery("FROM User u Where u.username =:username ");
+		createQuery.setParameter("username", useremail);
 		List<User> users = createQuery.list();
 		transaction.commit();
 		session.close();

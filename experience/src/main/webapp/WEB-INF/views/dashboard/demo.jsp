@@ -129,6 +129,10 @@
 																<label>Email</label>
 																<input type="text" readonly="readonly" name="useremail" value="${user.useremail}" class="form-control" required>
 															</div>
+															<div class="col-md-6">
+																	<label>Username</label>
+																	<input type="text" name="username" value="${user.username}" class="form-control" required>
+																</div>
 															<!-- <div class="col-md-6">
 									                            <label>Your country</label>
 									                            <select class="select">

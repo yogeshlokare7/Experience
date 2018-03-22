@@ -110,9 +110,6 @@ public class UserController {
 			return "redirect:/login";
 		}
 		setProfileImage(userDto);
-		@SuppressWarnings("static-access")
-		String password = new StringUtils().generateRandomPassword();
-		userDto.setUserpwd(password);
 		Role role = roleService.getRole(userDto.getUserrole());
 		User user = userService.getUser(userDto.getId());
 		userDto.getEntityFromDTO(user); 
@@ -120,6 +117,9 @@ public class UserController {
 		if(user.getId()!=null && user.getId()>0) {
 			userService.updateUser(user);
 		}else {
+			@SuppressWarnings("static-access")
+			String password = new StringUtils().generateRandomPassword();
+			user.setUserpwd(password);
 			userService.saveUser(user);
 			String appUrl = request.getScheme() + "://" + request.getServerName()+":"+request.getServerPort();
 
