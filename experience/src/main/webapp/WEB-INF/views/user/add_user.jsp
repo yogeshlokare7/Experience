@@ -57,11 +57,11 @@
 														<div class="row">
 														<div class="col-md-6">
 																<label>Username</label>
-																<input type="text" name="username" value="${user.username}" class="form-control" required>
+																<input type="text" name="username" value="${user.username}" class="form-control" required="required" placeholder="Enter username" maxlength="30" minlength="2">
 															</div>
 															<div class="col-md-6">
 																<label>Email</label>
-																<input type="email" name="useremail" value="${user.useremail}" class="form-control" required>
+																<input type="email" name="useremail" value="${user.useremail}" class="form-control" required="required" placeholder="Enter email" maxlength="30" minlength="2">
 															</div>
 														</div>
 													</div>
@@ -69,11 +69,11 @@
 														<div class="row">
 															<div class="col-md-6">
 																<label>First Name</label>
-																<input type="text" name="firstname" value="${user.firstname}" class="form-control" required>
+																<input type="text" name="firstname" value="${user.firstname}" class="form-control" required="required" placeholder="Enter first name" maxlength="30" minlength="2">
 															</div>
 															<div class="col-md-6">
 																<label>Last name</label>
-																<input type="text" name="lastname" value="${user.lastname}" class="form-control" required>
+																<input type="text" name="lastname" value="${user.lastname}" class="form-control" required="required" placeholder="Enter last name" maxlength="30" minlength="2">
 															</div>
 														</div>
 													</div>
@@ -82,15 +82,15 @@
 														<div class="row">
 															<div class="col-md-4">
 																<label>Street No</label>
-																<input type="text" name="streetno" value="${user.streetno}" class="form-control">
+																<input type="text" name="streetno" value="${user.streetno}" class="form-control" required="required" placeholder="Enter street no" maxlength="30" minlength="2">
 															</div>
 															<div class="col-md-4">
 																<label>Street Name</label>
-																<input type="text" name="streetname" value="${user.streetname}" class="form-control">
+																<input type="text" name="streetname" value="${user.streetname}" class="form-control" required="required" placeholder="Enter street name" maxlength="30" minlength="2">
 															</div>
 															<div class="col-md-4">
 																<label>City</label>
-																<input type="text" name="city" value="${user.city}" class="form-control" >
+																<input type="text" name="city" value="${user.city}" class="form-control" required="required" placeholder="Enter city" maxlength="30" minlength="2">
 															</div>
 														</div>
 													</div>
@@ -131,7 +131,7 @@
 																<div class="row">
 																	<div class="col-md-6">
 																		<label>Contact No</label> <input type="text" name="contactno"
-																			value="${user.contactno}" class="form-control" required>
+																			value="${user.contactno}" class="form-control" required="required" placeholder="Enter contact no" maxlength="30" minlength="2">
 																	</div>
 																	<div class="col-md-6">
 																		<label>User Role</label><a onclick="openDialog()" style="border-bottom: 1px solid; font-weight: bold;margin-left:20px; font:bold;"> Add New Role</a>

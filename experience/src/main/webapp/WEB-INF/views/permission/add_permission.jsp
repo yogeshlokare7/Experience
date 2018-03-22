@@ -54,7 +54,7 @@
 										<div class="row">
 										<label class="control-label col-lg-2">Permission Name</label>
 										<div class="col-md-6">
-											<input type="text" class="form-control" name="name" value="${permission.name}" required>
+											<input type="text" required="required" placeholder="Enter permission name" maxlength="30" minlength="2" class="form-control" name="name" value="${permission.name}" >
 										</div>
 										</div>
 									</div>
@@ -62,7 +62,7 @@
 									<div class="form-group">
 										<label class="control-label col-lg-2">Description</label>
 										<div class="col-lg-10">
-											<input type="text" class="form-control" name="description" value="${permission.description}" required>
+											<input type="text" class="form-control" required="required" placeholder="Enter permission description" maxlength="30" minlength="2"  name="description" value="${permission.description}" >
 										</div>
 									</div>
 

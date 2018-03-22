@@ -146,17 +146,17 @@
 
 								<div class="modal-body">
 									<h6 class="text-semibold">Role Name</h6>
-									<input type="text" class="form-control" name="role" value="${role.role}" required="true">
+									<input type="text" class="form-control" name="role" value="${role.role}" required="required" placeholder="Enter role name" maxlength="30" minlength="2">
 
 									<!-- <hr> -->
 
 									<h6 class="text-semibold">Description</h6>
-									<input type="text" class="form-control" name="description" value="${role.description}" required="true" >
+									<input type="text" class="form-control" name="description" value="${role.description}" required="required" placeholder="Enter role description" maxlength="30" minlength="2">
 								</div>
 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary">Save changes</button>
+									<button type="submit" class="btn btn-primary">Save</button>
 								</div>
 							</div>
 						</div>
