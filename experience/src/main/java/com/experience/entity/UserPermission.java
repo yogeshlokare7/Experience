@@ -1,13 +1,12 @@
 package com.experience.entity;
-import java.util.HashSet;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +18,6 @@ public class UserPermission  implements java.io.Serializable {
 	private Integer id;
 	private String name;
 	private String description;
-	private Set<Rolepermission> rolepermissions = new HashSet<Rolepermission>(0);
 
 	public UserPermission() {
 	}
@@ -30,7 +28,6 @@ public class UserPermission  implements java.io.Serializable {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.rolepermissions = rolepermissions;
 	}
 
 
@@ -65,14 +62,7 @@ public class UserPermission  implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="permission")
-	public Set<Rolepermission> getRolepermissions() {
-		return this.rolepermissions;
-	}
-
-	public void setRolepermissions(Set<Rolepermission> rolepermissions) {
-		this.rolepermissions = rolepermissions;
-	}
+	
 
 }
 

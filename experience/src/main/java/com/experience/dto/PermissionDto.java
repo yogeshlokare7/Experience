@@ -1,31 +1,22 @@
 package com.experience.dto;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 public class PermissionDto  {
 
 	private Integer id;
 	private String name;
-	private Set<RolePermissionDto> rolepermissions = new HashSet<RolePermissionDto>(0);
+	private String active;
 
 	public PermissionDto() {
 	}
 
-	public PermissionDto(String name, Set<RolePermissionDto> rolepermissions) {
+	public PermissionDto(Integer id, String name, String active) {
+		this.id = id;
 		this.name = name;
-		this.rolepermissions = rolepermissions;
+		this.active = active;
 	}
 
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Integer id) {
@@ -33,19 +24,19 @@ public class PermissionDto  {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Set<RolePermissionDto> getRolepermissions() {
-		return this.rolepermissions;
+	public String getActive() {
+		return active;
 	}
 
-	public void setRolepermissions(Set<RolePermissionDto> rolepermissions) {
-		this.rolepermissions = rolepermissions;
+	public void setActive(String active) {
+		this.active = active;
 	}
 
 }

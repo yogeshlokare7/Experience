@@ -10,25 +10,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="rolepermission" ,catalog="experience_america")
+@Table(name="rolepermission")
 public class Rolepermission  implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private UserPermission permission;
-	private Role role;
+	private Integer permId;
+	private Integer roleid;
 
+	
 	public Rolepermission() {
 	}
 
-	public Rolepermission(UserPermission permission, Role role) {
-		this.permission = permission;
-		this.role = role;
+	public Rolepermission(Integer id, Integer permId, Integer roleid) {
+		this.id = id;
+		this.permId = permId;
+		this.roleid = roleid;
 	}
 
 	@Id @GeneratedValue(strategy=IDENTITY)
-
-
 	@Column(name="id", unique=true, nullable=false)
 	public Integer getId() {
 		return this.id;
@@ -38,25 +38,24 @@ public class Rolepermission  implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="permissionid")
-	public UserPermission getPermission() {
-		return this.permission;
+	@Column(name="permissionid")
+	public Integer getPermId() {
+		return permId;
 	}
 
-	public void setPermission(UserPermission permission) {
-		this.permission = permission;
+	public void setPermId(Integer permId) {
+		this.permId = permId;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="roleid")
-	public Role getRole() {
-		return this.role;
+	@Column(name="roleid")
+	public Integer getRoleid() {
+		return roleid;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleid(Integer roleid) {
+		this.roleid = roleid;
 	}
+	
 }
 
 

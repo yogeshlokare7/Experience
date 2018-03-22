@@ -14,19 +14,19 @@
 				<div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4> <span class="text-semibold">Permission</span> - Form</h4>
+							<h4><span class="text-semibold">Role Permission</span> - Form</h4>
 						</div>
 					</div>
 
-					<div class="breadcrumb-line breadcrumb-line-component">
+					<%-- <div class="breadcrumb-line breadcrumb-line-component">
 						<ul class="breadcrumb">
 							<li><a href="${contextPath}/dashboard"><i class="icon-home2 position-left"></i> Home</a></li>
 							<li><a href="${contextPath}/permission/view">Permissions</a></li>
-							<li class="active">Save Permissions</li>
+							<li class="active">Input form</li>
 						</ul>
 
 						
-					</div>
+					</div> --%>
 				</div>
 				<!-- /page header -->
 
@@ -37,7 +37,7 @@
 					<!-- Form horizontal -->
 					<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">Add Role Permissions</h5>
+							<h5 class="panel-title">Save Permission</h5>
 							<div class="heading-elements">
 								<ul class="icons-list">
 			                		<li><a data-action="collapse"></a></li>
@@ -50,23 +50,29 @@
 						<div class="panel-body">
 							<form class="form-horizontal" method="POST" action="${contextPath}/permission/save">
 								<input type="hidden" name="id" value="${permission.id}">
+								<fieldset class="content-group">
 									<div class="form-group">
-										<div class="row">
-										<label class="control-label col-lg-2">Permission Name</label>
+										<label class="control-label col-lg-2">Role Name</label>
 										<div class="col-md-6">
-											<input type="text" class="form-control" name="name" value="${permission.name}" required>
-										</div>
+											<select id="roleId" class="form-control" name="userrole" required="required">
+																			<c:forEach items="${roles}" var="obj" varStatus="status">
+																				<option value="${obj.id}">
+																					<c:out value="${obj.role}" />
+																				</option>
+																			</c:forEach>
+																		</select>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-2">Description</label>
-										<div class="col-lg-10">
+										<div class="col-md-6">
 											<input type="text" class="form-control" name="description" value="${permission.description}" required>
 										</div>
 									</div>
 
 
+								</fieldset>
 								<div class="text-right">
 									<button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
 								</div>

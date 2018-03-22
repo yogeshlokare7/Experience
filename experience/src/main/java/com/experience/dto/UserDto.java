@@ -21,7 +21,7 @@ public class UserDto {
     private String contactno;
 	private String picture;
 	private MultipartFile images;
-    private Integer userrole;
+    private String userrole;
     private Short tempactive;
     private String username;
     private String streetno;
@@ -36,7 +36,7 @@ public class UserDto {
 	
 	public UserDto(Integer id, String firstname, String lastname, String useremail, Integer userage, String userpwd,
 			Byte userenabled, String confirmationtoken, String resettoken, Date createdon, Date lastlogin,
-			String contactno, String picture, MultipartFile images, Integer userrole, Short tempactive, String username,
+			String contactno, String picture, MultipartFile images, String userrole, Short tempactive, String username,
 			String streetno, String streetname, String city, String postalcode, String province, String country) {
 		this.id = id;
 		this.firstname = firstname;
@@ -225,20 +225,13 @@ public class UserDto {
 		this.images = images;
 	}
 
-	
-
-
-	public Integer getUserrole() {
+	public String getUserrole() {
 		return userrole;
 	}
 
-
-
-	public void setUserrole(Integer userrole) {
+	public void setUserrole(String userrole) {
 		this.userrole = userrole;
 	}
-
-
 
 	public Short getTempactive() {
 		return tempactive;

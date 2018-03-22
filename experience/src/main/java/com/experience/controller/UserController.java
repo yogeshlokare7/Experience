@@ -1,7 +1,6 @@
 package com.experience.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +22,7 @@ import com.experience.entity.User;
 import com.experience.service.EmailService;
 import com.experience.service.RoleService;
 import com.experience.service.UserService;
+import com.experience.util.InputUtils;
 import com.experience.util.StringUtils;
 
 
@@ -40,6 +40,8 @@ public class UserController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	 public static final String CASE_TEST= "checkIntString";
 	
 	@RequestMapping(value = "/user/add", method = RequestMethod.GET) 
 	public String userUser(Model model) throws Exception {
@@ -105,11 +107,12 @@ public class UserController {
 	//POST
 	@RequestMapping(value="/user/save", method = RequestMethod.POST)
 	public String saveUser(@ModelAttribute UserDto userDto) throws Exception {
+		
 		if(!isValidUser()){
 			return "redirect:/login";
 		}
 		setProfileImage(userDto);
-		Role role = roleService.getRole(userDto.getUserrole());
+		Role role = saveAndRetriveUserRole(userDto.getUserrole());
 		if(userDto.getId()!=null && userDto.getId()>0) {
 			User user = userService.getUser(userDto.getId());
 			userDto.getEntityFromDTO(user); 
@@ -136,6 +139,23 @@ public class UserController {
 		return "redirect:/user/view";
 	}
 	
+	private Role saveAndRetriveUserRole(String name) throws Exception {
+		new InputUtils();
+		Role role = new Role();
+		Object obj = InputUtils.validateInput(name, CASE_TEST);
+		if (obj instanceof Integer) {
+			Integer roleId  = (Integer) obj;
+			role = roleService.getRole(roleId);
+		}else {
+			String roleName= (String) obj;
+			Role role2= new Role();
+			role2.setRole(roleName);
+			Integer newRoleId = roleService.saveRole(role2);
+			role = roleService.getRole(newRoleId);
+		}
+		return role;
+	}
+
 	private void setProfileImage(UserDto dto) {
 		MultipartFile file = dto.getImages();
 		if (!file.isEmpty() && file!=null) {
