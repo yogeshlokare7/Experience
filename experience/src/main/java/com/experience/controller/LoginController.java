@@ -51,15 +51,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/forgot/reset", method = RequestMethod.GET)
-	public String displayResetPasswordPage(@RequestParam("token") String token, Model model) {
-		try {
-			User user = userService.findUserByResetToken(token);
-			if (user!=null) { 
-				model.addAttribute("id", user.getId());
-				return "reset";
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
+	public String displayResetPasswordPage(@RequestParam("token") String token, Model model) throws Exception {
+		User user = userService.findUserByResetToken(token);
+		if (user!=null) { 
+			model.addAttribute("id", user.getId());
+			return "reset";
 		}
 		return "alert_out";
 	}
@@ -139,8 +135,8 @@ public class LoginController {
 				passwordResetEmail.setFrom("noreply@mjbtech.com");
 				passwordResetEmail.setTo(user.getUseremail());
 				passwordResetEmail.setSubject("Password Reset Request");
-				passwordResetEmail.setText("To reset your password, click the link below:\n" + appUrl
-						+ "/reset?token=" + user.getResettoken());
+				passwordResetEmail.setText("Hello "+user.getFirstname()+",\n\n\nTo reset your password, click the link below:\n\n\n URL: " + appUrl
+						+ "/reset?token=" + user.getResettoken()+"\n\n\n\nSincerely,\nThe Experience Team");
 				emailService.sendEmail(passwordResetEmail);
 				model.addAttribute("user",user);
 				model.addAttribute("found","We've sent an email to <b>"+user.getUseremail()+"</b>. Click the link in the email to reset your password.");

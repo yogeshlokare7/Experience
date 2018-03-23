@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/countries.js"></script>
 <title>Experience</title>
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
@@ -82,11 +83,11 @@
 														<div class="row">
 															<div class="col-md-6">
 																<label>First Name</label>
-																<input type="text" name="firstname" value="${user.firstname}" class="form-control" required>
+																<input type="text" name="firstname" value="${user.firstname}" class="form-control" required="required" placeholder="Enter first name" maxlength="30" minlength="2">
 															</div>
 															<div class="col-md-6">
 																<label>Last name</label>
-																<input type="text" name="lastname" value="${user.lastname}" class="form-control" required>
+																<input type="text" name="lastname" value="${user.lastname}" class="form-control" required="required" placeholder="Enter last name" maxlength="30" minlength="2">
 															</div>
 														</div>
 													</div>
@@ -125,11 +126,11 @@
 														<div class="row">
 															<div class="col-md-6">
 																<label>Email</label>
-																<input type="text" readonly="readonly" name="useremail" value="${user.useremail}" class="form-control" required>
+																<input type="text" readonly="readonly" name="useremail" value="${user.useremail}" class="form-control" required="required" placeholder="Enter user email" maxlength="30" minlength="2">
 															</div>
 															<div class="col-md-6">
 																	<label>Username</label>
-																	<input type="text" name="username" value="${user.username}" class="form-control" required>
+																	<input type="text" name="username" value="${user.username}" class="form-control" required="required" placeholder="Enter user name" maxlength="30" minlength="2">
 																</div>
 															<!-- <div class="col-md-6">
 									                            <label>Your country</label>
@@ -144,12 +145,61 @@
 															</div> -->
 														</div>
 													</div>
+													
+													<div class="form-group">
+														<div class="row">
+															<div class="col-md-4">
+																<label>Street No</label>
+																<input type="text" name="streetno" value="${user.streetno}" class="form-control"  placeholder="Enter street no" maxlength="30" minlength="2">
+															</div>
+															<div class="col-md-4">
+																<label>Street Name</label>
+																<input type="text" name="streetname" value="${user.streetname}" class="form-control" placeholder="Enter street name" maxlength="30" minlength="2">
+															</div>
+															<div class="col-md-4">
+																<label>City</label>
+																<input type="text" name="city" value="${user.city}" class="form-control"  placeholder="Enter city" maxlength="30" minlength="2">
+															</div>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<div class="row">
+															<div class="col-md-4">
+																<label>Country</label> <select id="country" name="country"
+																	class="form-control">
+																</select>
+															</div>
+															<c:choose>
+																<c:when test="${empty user.id }">
+																	<div class="col-md-4">
+																		<label>Province</label> <select id="province" name="province"
+																			class="form-control">
+																		</select>
+																	</div>
+																</c:when>
+																<c:otherwise>
+																	<div class="col-md-4">
+																		<label>Province</label> <select id="province" name="province"
+																			class="form-control">
+																			<option value="${user.province}">
+																				<c:out value="${user.province}" />
+																		</select>
+																	</div>
+																</c:otherwise>
+															</c:choose>
+															<div class="col-md-4">
+																<label>Postal code</label> <input type="text" name="postalcode" placeholder="Enter postal code"
+																	value="${user.postalcode}" class="form-control">
+															</div>
+														</div>
+													</div>
 
 							                        <div class="form-group">
 							                        	<div class="row">
 							                        		<div class="col-md-6">
 																<label>Phone #</label>
-																<input type="text" name="contactno" value="${user.contactno}" class="form-control" required>
+																<input type="text" name="contactno" value="${user.contactno}" class="form-control" required="required" placeholder="Enter contact no" maxlength="30" minlength="2">
 																<span class="help-block">+99-99-9999-9999</span>
 							                        		</div>
 
@@ -214,6 +264,9 @@
 		<!--  END Content Here-->
 	</tiles:putAttribute>
 </tiles:insertDefinition>
+<script type="text/javascript">
+populateCountries("country", "province");
+</script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
 <script type="text/javascript"

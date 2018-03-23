@@ -53,7 +53,6 @@ public class RoleController {
 	
 	
 	/// THIS IS POST MTHODS 
-	
 	@RequestMapping(value="/role/save",method=RequestMethod.POST)
 	public String saveRole(@ModelAttribute("Role") Role role) throws Exception {
 		System.out.println("==============="+role.toString());

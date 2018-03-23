@@ -49,6 +49,7 @@ public class UserDaoImpl extends EntityTransactionImpl<User> implements UserDao{
 		return users!=null?users.get(0):null;
 	}
 
+	@SuppressWarnings("unchecked")
 	public User findUserByResetToken(String token) throws Exception {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();

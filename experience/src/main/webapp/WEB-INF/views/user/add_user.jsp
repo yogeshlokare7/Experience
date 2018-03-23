@@ -49,19 +49,19 @@
 						</div>
 
 						<div class="panel-body">
-						 <c:forEach items="${roles}" var="role">
-						 </c:forEach>
 							<form action="${pageContext.request.contextPath}/user/save" method="POST" enctype="multipart/form-data">
 												<input type="hidden" name="id" value="${user.id}">
 													<div class="form-group">
 														<div class="row">
 														<div class="col-md-6">
-																<label>Username</label>
-																<input type="text" name="username" value="${user.username}" class="form-control" required="required" placeholder="Enter username" maxlength="30" minlength="2">
-															</div>
-															<div class="col-md-6">
 																<label>Email</label>
-																<input type="email" name="useremail" value="${user.useremail}" class="form-control" required="required" placeholder="Enter email" maxlength="30" minlength="2">
+																<input type="email" id="useremail" name="useremail" value="${user.useremail}" class="form-control" required="required" placeholder="Enter email" maxlength="30" minlength="2">
+																<span id="errfn2" style="color:red;"></span>
+															</div>
+														<div class="col-md-6">
+																<label>Username</label>
+																<input type="text" id="username" name="username" value="${user.username}" class="form-control" required="required" placeholder="Enter username" maxlength="30" minlength="2">
+																<span id="errfn" style="color:red;"></span>
 															</div>
 														</div>
 													</div>
@@ -82,15 +82,15 @@
 														<div class="row">
 															<div class="col-md-4">
 																<label>Street No</label>
-																<input type="text" name="streetno" value="${user.streetno}" class="form-control" required="required" placeholder="Enter street no" maxlength="30" minlength="2">
+																<input type="text" name="streetno" value="${user.streetno}" class="form-control"  placeholder="Enter street no" maxlength="30" minlength="2">
 															</div>
 															<div class="col-md-4">
 																<label>Street Name</label>
-																<input type="text" name="streetname" value="${user.streetname}" class="form-control" required="required" placeholder="Enter street name" maxlength="30" minlength="2">
+																<input type="text" name="streetname" value="${user.streetname}" class="form-control"  placeholder="Enter street name" maxlength="30" minlength="2">
 															</div>
 															<div class="col-md-4">
 																<label>City</label>
-																<input type="text" name="city" value="${user.city}" class="form-control" required="required" placeholder="Enter city" maxlength="30" minlength="2">
+																<input type="text" name="city" value="${user.city}" class="form-control"  placeholder="Enter city" maxlength="30" minlength="2">
 															</div>
 														</div>
 													</div>
@@ -121,7 +121,7 @@
 																</c:otherwise>
 															</c:choose>
 															<div class="col-md-4">
-																<label>Postal code</label> <input type="text" name="postalcode"
+																<label>Postal code</label> <input type="text" name="postalcode" placeholder="Enter postal code"
 																	value="${user.postalcode}" class="form-control">
 															</div>
 														</div>
@@ -179,7 +179,7 @@
 															</div>
 
 													<div class="text-right">
-							                        	<button type="submit" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+							                        	<button type="submit" id="submitButton" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
 							                        </div>
 												</form>
 						</div>
@@ -194,6 +194,87 @@
 </tiles:insertDefinition>
 <script type="text/javascript">
 populateCountries("country", "province");
+$("#username").focusout(validateUserName);
+$("#useremail").focusout(validateUserEmail);
+
+function validateUserName() {
+    var username = document.getElementById("username").value;	
+    if(username!=""){
+    	console.log("Ajax Calling..."+username);
+    	$.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "${pageContext.request.contextPath}/findUsername?username=" + username,
+			headers : {
+				Accept : "text/plain; charset=utf-8",
+				"Content-Type" : "text/plain; charset=utf-8"
+			},
+			data : {
+				"username" : username
+			},
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				if(data!=null){
+					document.getElementById("errfn").innerHTML="Opps...That username is taken. Try another.";
+					document.getElementById("username").focus();
+				}else{
+					document.getElementById("errfn").innerHTML="";
+				}
+			},
+			error : function(req, status, err) {
+				document.getElementById("errfn").innerHTML="";
+				console.log('something went wrong', status, err);
+			}
+		});
+    }
+}
+
+function validateUserEmail() {
+    var useremail = document.getElementById("useremail").value;	
+    if(useremail!=""){
+    	console.log("Ajax Calling..."+useremail);
+    	$.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "${pageContext.request.contextPath}/findUseremail?useremail=" + useremail,
+			headers : {
+				Accept : "text/plain; charset=utf-8",
+				"Content-Type" : "text/plain; charset=utf-8"
+			},
+			data : {
+				"useremail" : useremail
+			},
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				if(data!=null){
+					document.getElementById("errfn2").innerHTML="An Experience account already exists with this email address.";
+					document.getElementById("useremail").focus();
+				}else{
+					document.getElementById("errfn2").innerHTML="";
+				}
+			},
+			error : function(req, status, err) {
+				document.getElementById("errfn2").innerHTML="";
+				console.log('something went wrong', status, err);
+			}
+		});
+    }
+}
+
+/* if(data!=""){
+	
+	var trHTML = 'Someone already used this username...please enter new';
+	$('#errfn').html('');
+	$('#errfn').append(trHTML);
+	}else{
+		var trHTML = 'nice';
+		$('#errfn').html('');
+		$('#errfn').append(trHTML);
+	} */
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -209,9 +290,6 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-
-
-//Prompt
 </script>
 <script type="text/javascript">
 function openDialog(){

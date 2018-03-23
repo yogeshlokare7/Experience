@@ -20,9 +20,21 @@
 	<link href="${contextPath}/resources/assets/css/components.css" rel="stylesheet" type="text/css">
 	<link href="${contextPath}/resources/assets/css/colors.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script type="text/javascript" src="${contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/assets/js/core/libraries/jquery.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/assets/js/core/libraries/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/assets/js/plugins/loaders/blockui.min.js"></script>
+	<!-- /core JS files -->
+
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="${contextPath}/resources/assets/js/core/app.js"></script>
 	<!-- /theme JS files -->
 
 </head>
+
 <body class="login-container">
 
 	<!-- Main navbar -->
@@ -51,10 +63,24 @@
 				<div class="content">
 					<%-- ${loginError} --%>
 					<!-- Simple login form -->
+					<c:if test="${not empty loginError}">
+					<!-- <div class="panel panel-flat"> -->
+					<div class="panel-body">
+					<div class="row">
+					<p class="text-semibold">Logging Error</p>
+							<div class="alert alert-danger alert-styled-left alert-bordered">
+										<button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+										<span class="text-semibold">Oh snap!</span> Error logging in. <a href="${contextPath}/login" class="alert-link">Please try again</a>.
+							</div>
+					</div>
+					</div>
+					</c:if>
 					<form action="${contextPath}/login" method="POST">
 						<div class="panel panel-body login-form">
 							<div class="text-center">
-								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+								<!-- <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div> -->
+								<img src="${pageContext.request.contextPath}/resources/assets/images/logo.png" alt=""><br/>
+								<br/>
 								<h5 class="content-group">Login to your account <small class="display-block">Enter your credentials below</small></h5>
 							</div>
 
@@ -73,7 +99,7 @@
 							</div>
 
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
+								<button type="submit" class="btn btn-primary btn-block" style="background-color:#FB8C00;border:#FB8C00;">Sign in <i class="icon-circle-right2 position-right"></i></button>
 							</div>
 
 							<div class="text-center">
@@ -81,7 +107,9 @@
 							</div>
 						</div>
 					</form>
+					
 					<!-- /simple login form -->
+
 
 					<!-- Footer -->
 					<div class="footer text-muted text-center">

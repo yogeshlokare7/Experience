@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.experience.dto.UserDto;
@@ -24,6 +26,7 @@ import com.experience.service.RoleService;
 import com.experience.service.UserService;
 import com.experience.util.InputUtils;
 import com.experience.util.StringUtils;
+import com.google.gson.Gson;
 
 
 @Controller
@@ -41,7 +44,7 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 	
-	 public static final String CASE_TEST= "checkIntString";
+	public static final String CASE_TEST= "checkIntString";
 	
 	@RequestMapping(value = "/user/add", method = RequestMethod.GET) 
 	public String userUser(Model model) throws Exception {
@@ -49,7 +52,6 @@ public class UserController {
 			return "redirect:/login";
 		}
 		model.addAttribute("roles",roleService.getRoleList());
-		model.addAttribute("userDto",new UserDto());
 		return "user/add_user";    
 	}
 
@@ -126,12 +128,12 @@ public class UserController {
 			String password = new StringUtils().generateRandomPassword();
 			user.setUserpwd(password);
 			userService.saveUser(user);
-			String appUrl = request.getScheme() + "://" + request.getServerName()+":"+request.getServerPort();
+			String appUrl = request.getScheme() + "://" + request.getServerName()+":"+request.getServerPort()+"/experience";
 
 			SimpleMailMessage registrationEmail = new SimpleMailMessage();
 			registrationEmail.setTo(user.getUseremail());
 			registrationEmail.setSubject("Experience Online Service Team");
-			registrationEmail.setText("Hello "+user.getFirstname()+"\n\n\nUser account created with below details:\n\nUsername: "+user.getUseremail()+"\nPassword:"+user.getUserpwd()
+			registrationEmail.setText("Hello "+user.getFirstname()+",\n\n\nUser account created with below details:\n\nUsername: "+user.getUseremail()+"\nPassword:"+user.getUserpwd()
 					+ "\n\n\nPlease login here:" +appUrl +"\n\n\nSincerely,\nThe Experience Team");
 			registrationEmail.setFrom("noreply@domain.com");
 			emailService.sendEmail(registrationEmail);
@@ -170,26 +172,6 @@ public class UserController {
 		
 	}
 
-	private boolean isValidUser() {
-		Object username = request.getSession().getAttribute("loggedInUser");
-		if(username ==  null){
-			return false;
-		}
-		return true;
-	}
-	
-	/*MultipartFile multipartFile = user.getImage();
-	if (null != multipartFile)
-	{
-		try {
-			byte [] byteArr=multipartFile.getBytes();
-			String imageStr = Base64.encodeBase64String(byteArr);
-			user.setPicture(imageStr);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}*/
-	
 	@RequestMapping(value = "/profile", method = RequestMethod.POST) 
 	public String demoDemoPage(@ModelAttribute UserDto dto, Model model) throws Exception {
 		System.out.println("dto--------------\n"+dto.toString());
@@ -198,6 +180,29 @@ public class UserController {
 		dto.getEntityFromDTO(user);
 		userService.updateUser(user);
 		return "redirect:/dashboard";    
+	}
+
+	// function to get Profile detail via Ajax in edit PackSlip
+	@RequestMapping(value = "/findUsername", method = RequestMethod.POST, headers = "Accept=*/*")
+	public @ResponseBody String getProfileDetlViaAjax(@RequestParam String username) throws Exception {
+		Gson gson = new Gson();
+		User result = userService.findUserByUsername(username);
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping(value = "/findUseremail", method = RequestMethod.POST, headers = "Accept=*/*")
+	public @ResponseBody String getEmailViaAjax(@RequestParam String useremail) throws Exception {
+		Gson gson = new Gson();
+		User result = userService.findUserByUseremail(useremail);
+		return gson.toJson(result);
+	}
+
+	private boolean isValidUser() {
+		Object username = request.getSession().getAttribute("loggedInUser");
+		if(username ==  null){
+			return false;
+		}
+		return true;
 	}
 	
 }

@@ -40,18 +40,4 @@ public class DashboardController {
 		return "dashboard/view_report_1";    
 	}
 	
-	/*@RequestMapping(value = "/demo", method = RequestMethod.POST) 
-	public String demoDemoPage(@RequestParam("file") MultipartFile file, Model model) {
-		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
-				System.out.println("@@@@@@@@@@@@@@file@!@@@@@@@@\n"+file+"\n"+bytes);
-				return "redirect:/dashboard";  
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return "demo";    
-	}*/
-	
 }
