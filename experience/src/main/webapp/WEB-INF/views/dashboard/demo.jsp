@@ -6,6 +6,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/countries.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/jquery.min.js"></script>
 <title>Experience</title>
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
@@ -92,36 +93,6 @@
 														</div>
 													</div>
 
-													<!-- <div class="form-group">
-														<div class="row">
-															<div class="col-md-6">
-																<label>Address line 1</label>
-																<input type="text" value="Ring street 12" class="form-control">
-															</div>
-															<div class="col-md-6">
-																<label>Address line 2</label>
-																<input type="text" value="building D, flat #67" class="form-control">
-															</div>
-														</div>
-													</div> -->
-
-													<!-- <div class="form-group">
-														<div class="row">
-															<div class="col-md-4">
-																<label>City</label>
-																<input type="text" value="Munich" class="form-control">
-															</div>
-															<div class="col-md-4">
-																<label>State/Province</label>
-																<input type="text" value="Bayern" class="form-control">
-															</div>
-															<div class="col-md-4">
-																<label>ZIP code</label>
-																<input type="text" value="1031" class="form-control">
-															</div>
-														</div>
-													</div> -->
-
 													<div class="form-group">
 														<div class="row">
 															<div class="col-md-6">
@@ -130,7 +101,7 @@
 															</div>
 															<div class="col-md-6">
 																	<label>Username</label>
-																	<input type="text" name="username" value="${user.username}" class="form-control" required="required" placeholder="Enter user name" maxlength="30" minlength="2">
+																	<input type="text" readonly="readonly" id="username" name="username" value="${user.username}" class="form-control" required="required" placeholder="Enter user name" maxlength="30" minlength="2">
 																</div>
 															<!-- <div class="col-md-6">
 									                            <label>Your country</label>
@@ -197,13 +168,21 @@
 
 							                        <div class="form-group">
 							                        	<div class="row">
-							                        		<div class="col-md-6">
+							                        		<div class="col-md-4">
 																<label>Phone #</label>
 																<input type="text" name="contactno" value="${user.contactno}" class="form-control" required="required" placeholder="Enter contact no" maxlength="30" minlength="2">
 																<span class="help-block">+99-99-9999-9999</span>
 							                        		</div>
-
-															<div class="col-md-6">
+															<div class="col-md-4">
+																		<label>Gender</label>
+																		<select id="gender" class="select" name="gender" required="required">
+																			<option value="">Select Gender</option>
+																			<option value="M"><c:out value="Male" /></option>
+																			<option value="F"><c:out value="Female" /></option>
+																			<option value="O"><c:out value="Other" /></option>
+																		</select>
+																	</div>
+															<div class="col-md-4">
 																<label class="display-block">Upload profile image</label>
 							                                    <input type="file" name="images" class="file-styled">
 							                                    <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
@@ -266,11 +245,12 @@
 </tiles:insertDefinition>
 <script type="text/javascript">
 populateCountries("country", "province");
+
+gender = '<c:out value="${user.gender}"/>';
+$('#gender option[value="' + gender + '"]').prop('selected', true);
 </script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/jquery.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/bootstrap.min.js"></script>
 <script type="text/javascript"

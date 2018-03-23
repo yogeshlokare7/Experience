@@ -51,11 +51,9 @@
 							<form class="form-horizontal" method="POST" action="${contextPath}/permission/save">
 								<input type="hidden" name="id" value="${permission.id}">
 									<div class="form-group">
-										<div class="row">
 										<label class="control-label col-lg-2">Permission Name</label>
-										<div class="col-md-6">
+										<div class="col-lg-10">
 											<input type="text" required="required" placeholder="Enter permission name" maxlength="30" minlength="2" class="form-control" name="name" value="${permission.name}" >
-										</div>
 										</div>
 									</div>
 

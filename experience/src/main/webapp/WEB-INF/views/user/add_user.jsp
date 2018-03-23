@@ -57,7 +57,14 @@
 																<label>Email</label>
 																<input type="email" id="useremail" name="useremail" value="${user.useremail}" class="form-control" required="required" placeholder="Enter email" maxlength="30" minlength="2">
 																<span id="errfn2" style="color:red;"></span>
+																<div id="checky" class="checkbox">
+																	<label style="color:green;">
+																	<span class="checked"><input type="checkbox" class="styled" id="copyTo" onclick="copyEmail()"></span>
+																	Email as Username
+																	</label>
+																</div>
 															</div>
+															
 														<div class="col-md-6">
 																<label>Username</label>
 																<input type="text" id="username" name="username" value="${user.username}" class="form-control" required="required" placeholder="Enter username" maxlength="30" minlength="2">
@@ -164,13 +171,22 @@
 
 															<div class="form-group">
 																<div class="row">
-																	<div class="col-md-6">
+																<div class="col-md-4">
+																		<label>Gender</label>
+																		<select id="gender" class="select" name="gender" required="required">
+																			<option value="">Select Gender</option>
+																			<option value="M"><c:out value="Male" /></option>
+																			<option value="F"><c:out value="Female" /></option>
+																			<option value="O"><c:out value="Other" /></option>
+																		</select>
+																	</div>
+																	<div class="col-md-4">
 																		<label class="display-block">Upload profile image</label> <input
 																			type="file" name="images" class="file-styled"
 																			onchange="readURL(this);"> <span class="help-block">Accepted
 																			formats: gif, png, jpg. Max file size 2Mb</span>
 																	</div>
-																	<div class="col-md-6">
+																	<div class="col-md-4">
 																		<c:if test="${empty user.picture}">
 																			<img id="blah" src="#" alt="" />
 																		</c:if>
@@ -187,13 +203,15 @@
 					<!-- /form horizontal -->
 
 				</div>
-				<!-- /content area -->
 	
-	<!--  -->
 </tiles:putAttribute>
 </tiles:insertDefinition>
 <script type="text/javascript">
 populateCountries("country", "province");
+
+gender = '<c:out value="${user.gender}"/>';
+$('#gender option[value="' + gender + '"]').prop('selected', true);
+
 $("#username").focusout(validateUserName);
 $("#useremail").focusout(validateUserEmail);
 
@@ -265,16 +283,15 @@ function validateUserEmail() {
     }
 }
 
-/* if(data!=""){
-	
-	var trHTML = 'Someone already used this username...please enter new';
-	$('#errfn').html('');
-	$('#errfn').append(trHTML);
+function copyEmail() {
+	var copyTo = document.getElementById("copyTo").checked;
+	console.log(copyTo);
+	if(copyTo){
+		document.getElementById("username").value = document.getElementById("useremail").value;
 	}else{
-		var trHTML = 'nice';
-		$('#errfn').html('');
-		$('#errfn').append(trHTML);
-	} */
+		document.getElementById("username").value = "";
+	}
+}
 
 function readURL(input) {
     if (input.files && input.files[0]) {

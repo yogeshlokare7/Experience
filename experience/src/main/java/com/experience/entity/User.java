@@ -1,18 +1,14 @@
 package com.experience.entity;
-import java.util.Arrays;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,6 +40,7 @@ public class User  implements java.io.Serializable {
     private String postalcode;
     private String province;
     private String country;
+    private String gender;
 
 	public User() {
 	
@@ -290,15 +287,26 @@ public class User  implements java.io.Serializable {
 		this.country = country;
 	}
 
+	@Column(name="gender")
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", useremail=" + useremail
 				+ ", userage=" + userage + ", userpwd=" + userpwd + ", userenabled=" + userenabled
 				+ ", confirmationtoken=" + confirmationtoken + ", resettoken=" + resettoken + ", createdon=" + createdon
-				+ ", lastlogin=" + lastlogin + ", contactno=" + contactno + ", picture=" + picture + ", userrole=" + userrole + ", tempactive=" + tempactive + ", username="
-				+ username + ", streetno=" + streetno + ", streetname=" + streetname + ", city=" + city
-				+ ", postalcode=" + postalcode + ", province=" + province + ", country=" + country + "]";
+				+ ", lastlogin=" + lastlogin + ", contactno=" + contactno + ", picture=" + picture + ", userrole="
+				+ userrole + ", tempactive=" + tempactive + ", username=" + username + ", streetno=" + streetno
+				+ ", streetname=" + streetname + ", city=" + city + ", postalcode=" + postalcode + ", province="
+				+ province + ", country=" + country + ", gender=" + gender + "]";
 	}
+
 }
 
 

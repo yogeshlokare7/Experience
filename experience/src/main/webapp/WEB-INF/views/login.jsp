@@ -28,7 +28,6 @@
 	<script type="text/javascript" src="${contextPath}/resources/assets/js/plugins/loaders/blockui.min.js"></script>
 	<!-- /core JS files -->
 
-
 	<!-- Theme JS files -->
 	<script type="text/javascript" src="${contextPath}/resources/assets/js/core/app.js"></script>
 	<!-- /theme JS files -->

@@ -56,43 +56,6 @@
                             </div>
                         </div>
 
-                        <%-- <div class="panel-body">
-                            The <code>DataTables</code> is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table. DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function. Searching, ordering, paging etc goodness will be immediately added to the table, as shown in this example. <strong>Datatables support all available table styling.</strong>
-                        </div> --%>
-
-                       <%--  <table class="table datatable-basic">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Role Name</th>
-                                    <th class="text-center">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                           <c:forEach items="${roles}" var="role">
-                                <tr>
-                                    <td>${role.id}</td>
-                                    <td>${role.role}</td>
-                                    <td class="text-center">
-                                        <ul class="icons-list">
-                                            <li class="dropdown">
-                                                
-                                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-													<i class="icon-menu9"></i>
-												</a>
-
-                                               <ul class="dropdown-menu dropdown-menu-right">
-                                               <li><a onclick="return confirmAction('Edit')" href="${contextPath}/user/edit/${user.id}">Edit</a></li>
-                                               <li><a onclick="return confirmAction('Delete')" href="${contextPath}/user/delete/${user.id}">Delete</a></li>
-                                                </ul> 
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                               </c:forEach>
-                            </tbody>
-                        </table>
-                         --%>
                         <table class="table datatable-basic">
                             <thead>
                                 <tr>
@@ -121,8 +84,8 @@
 												</a>
 
                                                <ul class="dropdown-menu dropdown-menu-right">
-                                               <li><a onclick="return confirmAction('Edit')" href="${contextPath}/role/edit/${role.id}"><i class="icon-pencil"></i>Edit</a></li>
-                                               <li><a onclick="return confirmAction('Delete')" href="${contextPath}/role/delete/${role.id}"><i class="icon-cross"></i>Delete</a></li>
+                                               <li><a href="${contextPath}/role/edit/${role.id}"><i class="icon-pencil"></i>Edit</a></li>
+                                               <li><a onclick="openDialog(${role.id})"><i class="icon-cross"></i>Delete</a></li>
                                                 </ul> 
                                             </li>
                                         </ul>
@@ -174,6 +137,42 @@ function confirmAction(action) {
 		return true;
 	}
 	return false;
+}
+</script>
+<script type="text/javascript">
+function openDialog(input){
+	var id=input;
+	swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this record!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#EF5350",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel pls!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm){
+        if (isConfirm) {
+            swal({
+                title: "Deleted!",
+                text: "Your record has been deleted.",
+                confirmButtonColor: "#66BB6A",
+                type: "success"
+            });
+            window.location = '${contextPath}/role/delete/'+id;
+        }
+        else {
+            swal({
+                title: "Cancelled",
+                text: "Your imaginary file is safe :)",
+                confirmButtonColor: "#2196F3",
+                type: "error"
+            });
+        }
+    });
+        
 }
 </script>
 <script type="text/javascript"

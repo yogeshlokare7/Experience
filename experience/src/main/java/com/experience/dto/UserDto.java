@@ -30,14 +30,16 @@ public class UserDto {
     private String postalcode;
     private String province;
     private String country;
+    private String gender;
 
 	public UserDto() {
 	}
-	
+
 	public UserDto(Integer id, String firstname, String lastname, String useremail, Integer userage, String userpwd,
 			Byte userenabled, String confirmationtoken, String resettoken, Date createdon, Date lastlogin,
 			String contactno, String picture, MultipartFile images, String userrole, Short tempactive, String username,
-			String streetno, String streetname, String city, String postalcode, String province, String country) {
+			String streetno, String streetname, String city, String postalcode, String province, String country,
+			String gender) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -61,8 +63,8 @@ public class UserDto {
 		this.postalcode = postalcode;
 		this.province = province;
 		this.country = country;
+		this.gender = gender;
 	}
-
 
 	public UserDto(User user) {
 		setFirstname(user.getFirstname());
@@ -101,6 +103,7 @@ public class UserDto {
 		user.setPostalcode(getPostalcode());
 		user.setCountry(getCountry());
 		user.setProvince(getProvince());
+		user.setGender(getGender());
 		return user;
 	}
 
@@ -297,6 +300,15 @@ public class UserDto {
 		this.country = country;
 	}
 
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDto [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", useremail=" + useremail
@@ -305,9 +317,8 @@ public class UserDto {
 				+ ", lastlogin=" + lastlogin + ", contactno=" + contactno + ", picture=" + picture + ", images="
 				+ images + ", userrole=" + userrole + ", tempactive=" + tempactive + ", username=" + username
 				+ ", streetno=" + streetno + ", streetname=" + streetname + ", city=" + city + ", postalcode="
-				+ postalcode + ", province=" + province + ", country=" + country + "]";
+				+ postalcode + ", province=" + province + ", country=" + country + ", gender=" + gender + "]";
 	}
-
 }
 
 

@@ -5,6 +5,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/blockui.min.js"></script>
 <title>Experience</title>
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
@@ -88,9 +92,9 @@
 													<i class="icon-menu9"></i>
 												</a>
 
-                                               <ul class="dropdown-menu dropdown-menu-right">
-                                               <li><a onclick="return confirmAction('Edit')" href="${contextPath}/user/edit/${user.id}"><i class="icon-pencil"></i>Edit</a></li>
-                                               <li><a onclick="return confirmAction('Delete')" href="${contextPath}/user/delete/${user.id}"><i class="icon-cross"></i>Delete</a></li>
+                                               <ul class="dropdown-menu dropdown-menu-right"><%--  --%>
+                                               <li><a href="${contextPath}/user/edit/${user.id}"><i class="icon-pencil"></i>Edit</a></li>
+                                               <li><a onclick="openDialog(${user.id})"><i class="icon-cross"></i>Delete</a></li>
                                                 </ul> 
                                             </li>
                                         </ul>
@@ -115,11 +119,43 @@ function confirmAction(action) {
 	return false;
 }
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/blockui.min.js"></script>
-
+<script type="text/javascript">
+function openDialog(input){
+	var id=input;
+	swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this record!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#EF5350",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel pls!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm){
+        if (isConfirm) {
+            swal({
+                title: "Deleted!",
+                text: "Your record has been deleted.",
+                confirmButtonColor: "#66BB6A",
+                type: "success"
+            });
+            window.location = '${contextPath}/user/delete/'+id;
+        }
+        else {
+            swal({
+                title: "Cancelled",
+                text: "Your imaginary file is safe :)",
+                confirmButtonColor: "#2196F3",
+                type: "error"
+            });
+        }
+    });
+        
+}
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/notifications/sweet_alert.min.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/app.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/selects/select2.min.js"></script>

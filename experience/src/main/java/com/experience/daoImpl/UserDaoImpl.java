@@ -38,7 +38,7 @@ public class UserDaoImpl extends EntityTransactionImpl<User> implements UserDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public User findUserByUseremail(String useremail) {
+	public User findUserByUseremail(String useremail) throws Exception{
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		Query createQuery = session.createQuery("FROM User u Where u.useremail =:useremail ");
