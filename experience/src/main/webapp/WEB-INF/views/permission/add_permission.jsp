@@ -60,7 +60,7 @@
 									<div class="form-group">
 										<label class="control-label col-lg-2">Description</label>
 										<div class="col-lg-10">
-											<input type="text" class="form-control" required="required" placeholder="Enter permission description" maxlength="30" minlength="2"  name="description" value="${permission.description}" >
+											<input type="text" class="form-control" placeholder="Enter permission description" maxlength="30" minlength="2"  name="description" value="${permission.description}" >
 										</div>
 									</div>
 

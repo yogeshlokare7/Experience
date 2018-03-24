@@ -42,7 +42,7 @@ public class RoleController {
 	public String editRole(@PathVariable("id") Integer id, Model model) throws Exception {
 		Role role = roleService.getRole(id);
 		model.addAttribute("role",role);
-		return "role/view_role";    
+		return "role/add_role";    
 	}
 
 	@RequestMapping(value = "/role/delete/{id}", method = RequestMethod.GET) 
@@ -51,7 +51,6 @@ public class RoleController {
 		return "redirect:/role/view";      
 	}
 	
-	
 	/// THIS IS POST MTHODS 
 	@RequestMapping(value="/role/save",method=RequestMethod.POST)
 	public String saveRole(@ModelAttribute("Role") Role role) throws Exception {
@@ -59,7 +58,11 @@ public class RoleController {
 		if(!isValidUser()){
 			return "redirect:/login";
 		}
-		roleService.saveRole(role);
+		if(role.getId()!=null && role.getId()>0) {
+			roleService.updateRole(role);
+		}else {
+			roleService.saveRole(role);
+		}
 		return "redirect:/role/view";
 	}
 	

@@ -37,7 +37,7 @@
                 
                 <div class="content">
 					<%-- <a href="${pageContext.request.contextPath}/role/add" class="btn btn-primary">ADD ROLE</a> --%>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_small">ADD ROLE</button>
+					<a href="${pageContext.request.contextPath}/role/add" class="btn btn-primary">ADD ROLE</a>
 					<br/>
 					<br/>
 					
@@ -97,48 +97,12 @@
                     </div>
                     <!-- /basic datatable -->
                    </div>
-                   <!-- Small modal -->
-                   <form method="POST" action="${contextPath}/role/save">
-					<div id="modal_small" class="modal fade">
-						<div class="modal-dialog modal-sm">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h5 class="modal-title">Add Role</h5>
-								</div>
-
-								<div class="modal-body">
-									<h6 class="text-semibold">Role Name</h6>
-									<input type="text" class="form-control" name="role" value="${role.role}" required="required" placeholder="Enter role name" maxlength="30" minlength="2">
-
-									<!-- <hr> -->
-
-									<h6 class="text-semibold">Description</h6>
-									<input type="text" class="form-control" name="description" value="${role.description}" required="required" placeholder="Enter role description" maxlength="30" minlength="2">
-								</div>
-
-								<div class="modal-footer">
-									<button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary">Save</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					</form>
-					<!-- /small modal -->
+         
                   
 
 <!--  END Content Here-->
 	</tiles:putAttribute>
 </tiles:insertDefinition>
-<script type="text/javascript">
-function confirmAction(action) {
-	if(confirm("Do you want to "+action+" Record !!")){
-		return true;
-	}
-	return false;
-}
-</script>
 <script type="text/javascript">
 function openDialog(input){
 	var id=input;
@@ -185,16 +149,11 @@ function openDialog(input){
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/blockui.min.js"></script>
 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/plugins/notifications/bootbox.min.js"></script>
-<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/notifications/sweet_alert.min.js"></script>
 
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/core/app.js"></script>
-	
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/pages/components_modals.js"></script> 
-
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/selects/select2.min.js"></script>
 <script type="text/javascript"
