@@ -54,6 +54,7 @@ public class LoginController {
 	public String displayResetPasswordPage(@RequestParam("token") String token, Model model) throws Exception {
 		User user = userService.findUserByResetToken(token);
 		if (user!=null) { 
+			System.out.println("Hello--------->\n"+user.toString());
 			model.addAttribute("id", user.getId());
 			return "reset";
 		}
@@ -99,12 +100,14 @@ public class LoginController {
 			}
 		}
 		model.addAttribute("loginError", "Something is wrong. Please try again");
-		return "login";
+		return "alert_out";
 	}
 	
 	@RequestMapping(value="/reset/{id}",method=RequestMethod.POST)
 	public String setNewPassword(@PathVariable("id") Integer id, @RequestParam String password, Model model) throws Exception {
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@\n\n\n\n"+id);
 		User user = userService.getUser(id);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@\n\n\n\n"+user.toString());
 		user.setUserpwd(password);
 		user.setResettoken(null);
 		userService.updateUser(user);
@@ -129,7 +132,7 @@ public class LoginController {
 			User user = userService.findUserByUseremail(userEmail);
 			if (user!=null) {
 				user.setResettoken(UUID.randomUUID().toString());
-				userService.saveUser(user);
+				userService.updateUser(user);
 				String appUrl = request.getScheme() + "://" + request.getServerName()+":"+request.getServerPort()+request.getRequestURI();
 				SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
 				passwordResetEmail.setFrom("noreply@mjbtech.com");
@@ -137,7 +140,11 @@ public class LoginController {
 				passwordResetEmail.setSubject("Password Reset Request");
 				passwordResetEmail.setText("Hello "+user.getFirstname()+",\n\n\nTo reset your password, click the link below:\n\n\n URL: " + appUrl
 						+ "/reset?token=" + user.getResettoken()+"\n\n\n\nSincerely,\nThe Experience Team");
-				emailService.sendEmail(passwordResetEmail);
+				try {
+					emailService.sendEmail(passwordResetEmail);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 				model.addAttribute("user",user);
 				model.addAttribute("found","We've sent an email to <b>"+user.getUseremail()+"</b>. Click the link in the email to reset your password.");
 				return "forgot";	

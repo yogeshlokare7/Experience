@@ -36,69 +36,52 @@
                     <!-- Basic datatable -->
                     <div class="panel panel-flat">
                         <div class="panel-heading">
-                            <!-- <h5 class="panel-title">Basic datatable</h5> -->
                             <div class="heading-elements">
-                                <!-- <ul class="icons-list">
-                                    <li><a data-action="collapse"></a></li>
-                                    <li><a data-action="reload"></a></li>
-                                    <li><a data-action="close"></a></li>
-                                </ul> -->
                             </div>
                         </div>
-                        <table class="table datatable-basic">
+                        <table class="table table-bordered table-hover datatable-highlight">
                             <thead>
                                 <tr>
                                     <th style="display:none;">Id</th>
                                     <th>Permission</th>
                                     <th>Description</th>
-                               <!--      <th>DOB</th> -->
-                                   <!--  <th>Status</th> -->
+                                    <th style="display:none;">DOB</th>
+									<th style="display:none;">Status</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${permissions}" var="permission">
-                                <tr>
-                                    <td style="display:none;">${permission.id}</td>
-                                    <td>${permission.name}</td>
-                                    <td>${permission.description}</td>
-                                   <!--  <td></td> -->
-                                   <!--  <td><span class="label label-success">Active</span></td> -->
-                                    <td class="text-center">
-                                        <ul class="icons-list">
-                                            <li class="dropdown">
-                                                
-                                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                             <c:forEach items="${permissions}" var="permission">
+                               <tr>
+									<td style="display:none;">${permission.id}</td>
+									<td>${permission.name}</td>
+									<td>${permission.description}</td>
+									<td style="display:none;">22 Jun 1972</td>
+									<td style="display:none;"><span class="label label-success">Active</span></td>
+									<td class="text-center">
+										<ul class="icons-list">
+											<li class="dropdown">
+												<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 													<i class="icon-menu9"></i>
 												</a>
 
-                                               <ul class="dropdown-menu dropdown-menu-right">
+												 <ul class="dropdown-menu dropdown-menu-right">
                                                <li><a href="${contextPath}/permission/edit/${permission.id}"><i class="icon-pencil"></i>Edit</a></li>
                                                <li><a onclick="openDialog(${permission.id})"><i class="icon-cross"></i>Delete</a></li>
                                                 </ul> 
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                               </c:forEach>
+											</li>
+										</ul>
+									</td>
+								</tr>
+								</c:forEach>
                             </tbody>
                         </table>
                     </div>
-                    <!-- /basic datatable -->
                    </div>
                   
-
 <!--  END Content Here-->
 	</tiles:putAttribute>
 </tiles:insertDefinition>
-<script type="text/javascript">
-function confirmAction(action) {
-	if(confirm("Do you want to "+action+" Record !!")){
-		return true;
-	}
-	return false;
-}
-</script>
 <script type="text/javascript">
 function openDialog(input){
 	var id=input;
@@ -135,12 +118,8 @@ function openDialog(input){
         
 }
 </script>
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/plugins/notifications/sweet_alert.min.js"></script>
-
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/notifications/sweet_alert.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/app.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/forms/selects/select2.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/tables/datatables/datatables.min.js"></script>
- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/pages/datatables_basic.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/pages/datatables_advanced.js"></script>

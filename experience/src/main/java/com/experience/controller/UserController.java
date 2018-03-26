@@ -136,7 +136,11 @@ public class UserController {
 			registrationEmail.setText("Hello "+user.getFirstname()+",\n\n\nUser account created with below details:\n\nUsername: "+user.getUseremail()+"\nPassword:"+user.getUserpwd()
 					+ "\n\n\nPlease login here:" +appUrl +"\n\n\nSincerely,\nThe Experience Team");
 			registrationEmail.setFrom("noreply@domain.com");
-			emailService.sendEmail(registrationEmail);
+			try {
+				emailService.sendEmail(registrationEmail);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return "redirect:/user/view";
 	}

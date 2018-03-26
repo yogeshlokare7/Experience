@@ -44,21 +44,22 @@
 									<div class="form-group">
 										<label class="control-label col-lg-2">Password</label>
 										<div class="col-lg-10">
-											<input type="password" class="form-control" name="password" value="">
+											<input id="pass" type="password" class="form-control" name="password" value="" autofocus="autofocus" required>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label col-lg-2">Confirm Password</label>
 										<div class="col-lg-10">
-											<input type="password" class="form-control" name="confirmPassword" value="">
+											<input id="c_pass" type="password" class="form-control" name="confirmPassword" value="" onblur="confirmPass()" required>
+											<span id="error" style="color: #F00;"> </span>
 										</div>
 									</div>
-
+									
 
 								</fieldset>
 								<div class="text-right">
-									<button type="submit" class="btn btn-primary">Update <i class="icon-arrow-right14 position-right"></i></button>
+									<button id="submitButton" type="submit" class="btn btn-primary">Update <i class="icon-arrow-right14 position-right"></i></button>
 								</div>
 							</form>
 						</div>
@@ -74,6 +75,19 @@
 	<!--  -->
 </tiles:putAttribute>
 </tiles:insertDefinition>
+<script type="text/javascript">
+			function confirmPass() {
+				var pass = document.getElementById("pass").value
+				var confPass = document.getElementById("c_pass").value
+				if (pass != confPass) {
+					document.getElementById('error').innerHTML = 'wrong confirm password';
+					$("#submitButton").attr("disabled", "disabled");
+				} else {
+					document.getElementById('error').innerHTML = '';
+					$("#submitButton").removeAttr("disabled");
+				}
+			}
+		</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/plugins/loaders/pace.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/core/libraries/bootstrap.min.js"></script>

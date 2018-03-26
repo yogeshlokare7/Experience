@@ -84,21 +84,22 @@
 							</div>
 
 							<div class="form-group has-feedback has-feedback-left">
-								<input type="password" class="form-control" name="password" placeholder="Password" required>
+								<input id="pass" type="password" class="form-control" name="password" placeholder="Password" required>
 								<div class="form-control-feedback">
 									<i class="icon-lock2 text-muted"></i>
 								</div>
 							</div>
 
 							<div class="form-group has-feedback has-feedback-left">
-								<input type="password" class="form-control" name="confPassword" placeholder="Confirm Password" required>
+								<input id="c_pass" type="password" class="form-control" name="confPassword" placeholder="Confirm Password" onblur="confirmPass()" required>
 								<div class="form-control-feedback">
 									<i class="icon-lock2 text-muted"></i>
 								</div>
+									<span id="error" style="color: #F00;"> </span>
 							</div>
 
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-block" style="background-color:#FB8C00;border:#FB8C00;">Set Password <i class="icon-circle-right2 position-right"></i></button>
+								<button type="submit" id="submitButton" class="btn btn-primary btn-block" style="background-color:#FB8C00;border:#FB8C00;">Set Password <i class="icon-circle-right2 position-right"></i></button>
 							</div>
 
 							
@@ -124,6 +125,19 @@
 
 	</div>
 	<!-- /page container -->
-
+<script type="text/javascript">
+			function confirmPass() {
+				var pass = document.getElementById("pass").value
+				var confPass = document.getElementById("c_pass").value
+				if (pass != confPass) {
+					document.getElementById('error').innerHTML = 'wrong confirm password';
+					$("#submitButton").attr("disabled", "disabled");
+				} else {
+					document.getElementById('error').innerHTML = '';
+					$("#submitButton").removeAttr("disabled");
+				}
+			}
+		</script>
 </body>
 </html>
+
