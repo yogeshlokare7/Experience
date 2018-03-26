@@ -21,8 +21,8 @@
 					<div class="breadcrumb-line breadcrumb-line-component">
 						<ul class="breadcrumb">
 							<li><a href="${contextPath}/dashboard"><i class="icon-home2 position-left"></i> Home</a></li>
-							<li><a href="${contextPath}/permission/view">Permissions</a></li>
-							<li class="active">Save Permissions</li>
+							<li><a href="${contextPath}/permission/view">Roles</a></li>
+							<li class="active">Save Role</li>
 						</ul>
 
 						
@@ -37,14 +37,14 @@
 					<!-- Form horizontal -->
 					<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">Add Role Permissions</h5>
-							<div class="heading-elements">
+							<h5 class="panel-title">Add Role</h5>
+							<!-- <div class="heading-elements">
 								<ul class="icons-list">
 			                		<li><a data-action="collapse"></a></li>
 			                		<li><a data-action="reload"></a></li>
 			                		<li><a data-action="close"></a></li>
 			                	</ul>
-		                	</div>
+		                	</div> -->
 						</div>
 
 						<div class="panel-body">

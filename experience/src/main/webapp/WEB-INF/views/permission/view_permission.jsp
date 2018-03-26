@@ -38,17 +38,17 @@
                         <div class="panel-heading">
                             <!-- <h5 class="panel-title">Basic datatable</h5> -->
                             <div class="heading-elements">
-                                <ul class="icons-list">
+                                <!-- <ul class="icons-list">
                                     <li><a data-action="collapse"></a></li>
                                     <li><a data-action="reload"></a></li>
                                     <li><a data-action="close"></a></li>
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
                         <table class="table datatable-basic">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th style="display:none;">Id</th>
                                     <th>Permission</th>
                                     <th>Description</th>
                                <!--      <th>DOB</th> -->
@@ -59,8 +59,8 @@
                             <tbody>
                                 <c:forEach items="${permissions}" var="permission">
                                 <tr>
-                                    <td>${permission.id}</td>
-                                    <td><a href="#">${permission.name}</a></td>
+                                    <td style="display:none;">${permission.id}</td>
+                                    <td>${permission.name}</td>
                                     <td>${permission.description}</td>
                                    <!--  <td></td> -->
                                    <!--  <td><span class="label label-success">Active</span></td> -->

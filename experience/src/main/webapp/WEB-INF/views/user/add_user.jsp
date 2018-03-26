@@ -41,9 +41,9 @@
 							<h5 class="panel-title">User Registration</h5>
 							<div class="heading-elements">
 								<ul class="icons-list">
-			                		<li><a data-action="collapse"></a></li>
+			                		<!-- <li><a data-action="collapse"></a></li>
 			                		<li><a data-action="reload"></a></li>
-			                		<li><a data-action="close"></a></li>
+			                		<li><a data-action="close"></a></li> -->
 			                	</ul>
 		                	</div>
 						</div>
@@ -141,10 +141,12 @@
 																			value="${user.contactno}" class="form-control" required="required" placeholder="Enter contact no" maxlength="30" minlength="2">
 																	</div>
 																	<div class="col-md-6">
-																		<label>User Role</label><a onclick="openDialog()" style="border-bottom: 1px solid; font-weight: bold;margin-left:20px; font:bold;"> Add New Role</a>
+																		<label>User Role</label>
 																		<c:choose>
 																			<c:when test="${empty user.id }">
 																			<select id="roleId" class="select" name="userrole" required="required">
+																			<option value="">Select Role</option>
+																			<option value="new">Add New Role</option>
 																			<c:forEach items="${roles}" var="obj" varStatus="status">
 																				<option value="${obj.id}">
 																					<c:out value="${obj.role}" />
@@ -309,6 +311,15 @@ function readURL(input) {
 }
 </script>
 <script type="text/javascript">
+$(function(){
+	  $('#roleId').on('change', function(){
+	  var val = $(this).val();
+	  if(val === 'new') {
+		  openDialog();
+	  }
+	  })
+})
+
 function openDialog(){
     swal({
         title: "Add Role",

@@ -48,18 +48,18 @@
                         <div class="panel-heading">
                             <!-- <h5 class="panel-title">Basic datatable</h5> -->
                             <div class="heading-elements">
-                                <ul class="icons-list">
+                               <!--  <ul class="icons-list">
                                     <li><a data-action="collapse"></a></li>
                                     <li><a data-action="reload"></a></li>
                                     <li><a data-action="close"></a></li>
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
 
                         <table class="table datatable-basic">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th style="display:none;">Id</th>
                                     <th>Role Name</th>
                                    <!--  <th>Email </th>
                                     <th>Contact No</th> -->
@@ -70,7 +70,7 @@
                             <tbody>
                             <c:forEach items="${roles}" var="role">
                                 <tr>
-                                    <td>${role.id}</td>
+                                    <td style="display:none;">${role.id}</td>
                                     <td>${role.role}</td>
                                     <%-- <td><a href="#">${user.useremail}</a></td>
                                     <td>${user.contactno}</td> --%>

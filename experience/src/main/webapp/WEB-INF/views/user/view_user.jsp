@@ -49,13 +49,13 @@
                     <div class="panel panel-flat">
                         <div class="panel-heading">
                             <!-- <h5 class="panel-title">Basic datatable</h5> -->
-                            <div class="heading-elements">
+                           <!--  <div class="heading-elements">
                                 <ul class="icons-list">
                                     <li><a data-action="collapse"></a></li>
                                     <li><a data-action="reload"></a></li>
                                     <li><a data-action="close"></a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
 
                         <%-- <div class="panel-body">
@@ -80,19 +80,17 @@
                                 <tr>
                                     <td>${user.firstname}</td>
                                     <td>${user.lastname}</td>
-                                    <td><a href="#">${user.useremail}</a></td>
+                                    <td>${user.useremail}</td>
                                     <td>${user.contactno}</td>
                                     <td>${user.userrole.role}</td>
                                     <td><span class="label label-success">Active</span></td>
                                     <td class="text-center">
                                         <ul class="icons-list">
                                             <li class="dropdown">
-                                                
                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 													<i class="icon-menu9"></i>
 												</a>
-
-                                               <ul class="dropdown-menu dropdown-menu-right"><%--  --%>
+                                               <ul class="dropdown-menu dropdown-menu-right">
                                                <li><a href="${contextPath}/user/edit/${user.id}"><i class="icon-pencil"></i>Edit</a></li>
                                                <li><a onclick="openDialog(${user.id})"><i class="icon-cross"></i>Delete</a></li>
                                                 </ul> 
